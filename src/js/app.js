@@ -16,7 +16,7 @@ gameCtrl.init();
 
 // don't write your code here
 
-gamePlay.drawUi('prairie');
+// gamePlay.drawUi('prairie');
 
 // import Bowman from './characters/Bowman'; const level_3 = new Bowman(3); console.log(level_3);
 
@@ -38,3 +38,9 @@ const playerGenerator = characterGenerator(playerTypes, 2); // в данном �
 const character1 = playerGenerator.next().value; // случайный персонаж из списка playerTypes с уровнем 1 или 2
 console.log(character1.type); // magician
 
+import Team from "./Team";
+
+const characters = [new Swordsman(2), new Bowman(3)];
+const team = new Team(characters);
+console.log(team);
+console.log(team.characters);

@@ -11,10 +11,6 @@ test('нельзя new Character', () => {
   expect(() => new Character(2)).toThrow('исключение - запрещено использовать new Character()');
 });
 
-// test('недопустимый ТИП', () => {
-//   expect(() => new Character(1, 'generic')).toThrow(' - неправильный ТИП');
-// });
-
 // Bowman
 test('если Bowman', () => {
     const result = new Bowman(3);
