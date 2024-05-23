@@ -8,8 +8,25 @@
  * возвращает новый экземпляр класса персонажа
  *
  */
+
+//  function* randomIntegerPlayerTypes(allowedTypes, maxLevel) {
+//   while (true) {
+//       yield playerTypes[Math.floor(Math.random() * (maxLevel + 1))];
+//   }
+// }
+
+
+// import bowman from "../characters/Bowman";
+// import swordsman from "../characters/Swordsman";
+// import magician from "../characters/Magician";
+  // const playerTypes = [bowman, swordsman, magician];
+
 export function* characterGenerator(allowedTypes, maxLevel) {
   // TODO: write logic here
+
+  while (true) {
+    yield new allowedTypes[Math.floor(Math.random() * (maxLevel + 1))];
+  }
 }
 
 /**

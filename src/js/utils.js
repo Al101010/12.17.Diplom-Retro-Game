@@ -1,7 +1,7 @@
 export function calcTileType(index, boardSize) {
   // TODO: ваш код будет тут
 
-  if (index === 0) {
+  if (index === 0 && boardSize === 8) {
     return 'top-left';
   }
   if (index === 7) {

@@ -47,14 +47,19 @@ test('should center', () => {
 
 // /**
 
-// export function calcHealthLevel(health) {
-//   if (health < 15) {
-//     return 'critical';
-//   }
+import { calcHealthLevel } from "../utils";
 
-//   if (health < 50) {
-//     return 'normal';
-//   }
+test('health < 15 - critical', () => {
+  const result = calcHealthLevel(10);
+  expect(result).toBe('critical');
+});
 
-//   return 'high';
-// }
+test('health < 50 - normal', () => {
+  const result = calcHealthLevel(30);
+  expect(result).toBe('normal');
+});
+
+test('health > 50 - high', () => {
+  const result = calcHealthLevel(60);
+  expect(result).toBe('high');
+});
