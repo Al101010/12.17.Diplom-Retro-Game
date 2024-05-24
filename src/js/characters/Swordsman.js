@@ -8,7 +8,7 @@ export default class Swordsman extends Character {
             this.attack = 40;
             this.defence = 10;
         } else {
-            throw new Error('исключение - неправильный ТИП')
+            throw new Error('исключение - не Swordsman')
         }
     }
 }

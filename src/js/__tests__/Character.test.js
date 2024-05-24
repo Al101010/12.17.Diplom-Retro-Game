@@ -11,6 +11,14 @@ test('нельзя new Character', () => {
   expect(() => new Character(2)).toThrow('исключение - запрещено использовать new Character()');
 });
 
+// test('Такого ТИПА персонажа нет', () => {
+//     const types = ['swordsman', 'bowman', 'magician', 'daemon', 'undead', 'vampire'];
+//     const bowman1 = new  Character(2, 'Bowman');
+//     const bowman2 = {health: 100, level: 3, type: 'Bowman', attack: 25, defence: 25};
+
+//     expect(bowman1.type).toBe(bowman2.type);
+// });
+
 // Bowman
 test('если Bowman', () => {
     const result = new Bowman(3);
@@ -19,7 +27,7 @@ test('если Bowman', () => {
 });
 
 test('или НЕ Bowman', () => {
-    expect(() => new Bowman(3, 'generic')).toThrow('исключение - неправильный ТИП');
+    expect(() => new Bowman(3, 'generic')).toThrow('исключение - не Bowman');
 });
 
 // Daemon
@@ -30,7 +38,7 @@ test('если Daemon', () => {
 });
 
 test('или НЕ Daemon', () => {
-    expect(() => new Daemon(3, 'generic')).toThrow('исключение - неправильный ТИП');
+    expect(() => new Daemon(3, 'generic')).toThrow('исключение - не Daemon');
 });
 
 // Magician
@@ -41,7 +49,7 @@ test('если Magician', () => {
 });
 
 test('или НЕ Magician', () => {
-    expect(() => new Magician(3, 'generic')).toThrow('исключение - неправильный ТИП');
+    expect(() => new Magician(3, 'generic')).toThrow('исключение - не Magician');
 });
 
 // Swordsman
@@ -52,7 +60,7 @@ test('если Swordsman', () => {
 });
 
 test('или НЕ Swordsman', () => {
-    expect(() => new Swordsman(3, 'generic')).toThrow('исключение - неправильный ТИП');
+    expect(() => new Swordsman(3, 'generic')).toThrow('исключение - не Swordsman');
 });
 
 // Undead
@@ -63,7 +71,7 @@ test('если Undead', () => {
 });
 
 test('или НЕ Undead', () => {
-    expect(() => new Undead(3, 'generic')).toThrow('исключение - неправильный ТИП');
+    expect(() => new Undead(3, 'generic')).toThrow('исключение - не Undead');
 });
 
 // Vampire
@@ -74,5 +82,5 @@ test('если Vampire', () => {
 });
 
 test('или НЕ Vampire', () => {
-    expect(() => new Vampire(3, 'generic')).toThrow('исключение - неправильный ТИП');
+    expect(() => new Vampire(3, 'generic')).toThrow('исключение - не Vampire');
 });

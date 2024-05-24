@@ -44,3 +44,15 @@ const characters = [new Swordsman(2), new Bowman(3)];
 const team = new Team(characters);
 console.log(team);
 console.log(team.characters);
+
+console.log(team.characters[0].level);
+//---
+import PositionedCharacter from "./PositionedCharacter";
+
+const character = new Bowman(2);
+const position = 8; // для поля 8x8 лучник будет находиться слева на второй строке
+const positionedCharacter = new PositionedCharacter(character, position);
+console.log(positionedCharacter);
+
+gamePlay.redrawPositions([positionedCharacter]);
+// import PositionedCharacter from "./PositionedCharacter";

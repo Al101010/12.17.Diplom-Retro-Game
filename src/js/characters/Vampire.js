@@ -8,7 +8,7 @@ export default class Vampire extends Character {
             this.attack = 25;
             this.defence = 25;
         } else {
-            throw new Error('исключение - неправильный ТИП')
+            throw new Error('исключение - не Vampire')
         }
     }
 }
