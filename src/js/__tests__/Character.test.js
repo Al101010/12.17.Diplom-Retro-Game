@@ -11,76 +11,68 @@ test('нельзя new Character', () => {
   expect(() => new Character(2)).toThrow('исключение - запрещено использовать new Character()');
 });
 
-// test('Такого ТИПА персонажа нет', () => {
-//     const types = ['swordsman', 'bowman', 'magician', 'daemon', 'undead', 'vampire'];
-//     const bowman1 = new  Character(2, 'Bowman');
-//     const bowman2 = {health: 100, level: 3, type: 'Bowman', attack: 25, defence: 25};
-
-//     expect(bowman1.type).toBe(bowman2.type);
-// });
-
 // Bowman
-test('если Bowman', () => {
+test('если bowman', () => {
     const result = new Bowman(3);
-    const bowman = {health: 100, level: 3, type: 'Bowman', attack: 25, defence: 25};
+    const bowman = {health: 100, level: 3, type: 'bowman', attack: 25, defence: 25};
     expect(result).toEqual(bowman);
 });
 
-test('или НЕ Bowman', () => {
-    expect(() => new Bowman(3, 'generic')).toThrow('исключение - не Bowman');
+test('или НЕ bowman', () => {
+    expect(() => new Bowman(3, 'generic')).toThrow('исключение - не bowman');
 });
 
 // Daemon
-test('если Daemon', () => {
+test('если daemon', () => {
     const result = new Daemon(3);
-    const daemon = {health: 100, level: 3, type: 'Daemon', attack: 10, defence: 10};
+    const daemon = {health: 100, level: 3, type: 'daemon', attack: 10, defence: 10};
     expect(result).toEqual(daemon);
 });
 
-test('или НЕ Daemon', () => {
-    expect(() => new Daemon(3, 'generic')).toThrow('исключение - не Daemon');
+test('или НЕ daemon', () => {
+    expect(() => new Daemon(3, 'generic')).toThrow('исключение - не daemon');
 });
 
 // Magician
-test('если Magician', () => {
+test('если magician', () => {
     const result = new Magician(3);
-    const magician = {health: 100, level: 3, type: 'Magician', attack: 10, defence: 10};
+    const magician = {health: 100, level: 3, type: 'magician', attack: 10, defence: 10};
     expect(result).toEqual(magician);
 });
 
-test('или НЕ Magician', () => {
-    expect(() => new Magician(3, 'generic')).toThrow('исключение - не Magician');
+test('или НЕ magician', () => {
+    expect(() => new Magician(3, 'generic')).toThrow('исключение - не magician');
 });
 
 // Swordsman
-test('если Swordsman', () => {
+test('если swordsman', () => {
     const result = new Swordsman(3);
-    const swordsman = {health: 100, level: 3, type: 'Swordsman', attack: 40, defence: 10};
+    const swordsman = {health: 100, level: 3, type: 'swordsman', attack: 40, defence: 10};
     expect(result).toEqual(swordsman);
 });
 
-test('или НЕ Swordsman', () => {
-    expect(() => new Swordsman(3, 'generic')).toThrow('исключение - не Swordsman');
+test('или НЕ swordsman', () => {
+    expect(() => new Swordsman(3, 'generic')).toThrow('исключение - не swordsman');
 });
 
 // Undead
-test('если Undead', () => {
+test('если undead', () => {
     const result = new Undead(3);
-    const undead = {health: 100, level: 3, type: 'Undead', attack: 40, defence: 10};
+    const undead = {health: 100, level: 3, type: 'undead', attack: 40, defence: 10};
     expect(result).toEqual(undead);
 });
 
-test('или НЕ Undead', () => {
-    expect(() => new Undead(3, 'generic')).toThrow('исключение - не Undead');
+test('или НЕ undead', () => {
+    expect(() => new Undead(3, 'generic')).toThrow('исключение - не undead');
 });
 
 // Vampire
-test('если Vampire', () => {
+test('если vampire', () => {
     const result = new Vampire(3);
-    const vampire = {health: 100, level: 3, type: 'Vampire', attack: 25, defence: 25};
+    const vampire = {health: 100, level: 3, type: 'vampire', attack: 25, defence: 25};
     expect(result).toEqual(vampire);
 });
 
-test('или НЕ Vampire', () => {
-    expect(() => new Vampire(3, 'generic')).toThrow('исключение - не Vampire');
+test('или НЕ vampire', () => {
+    expect(() => new Vampire(3, 'generic')).toThrow('исключение - не vampire');
 });

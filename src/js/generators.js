@@ -24,8 +24,14 @@
 export function* characterGenerator(allowedTypes, maxLevel) {
   // TODO: write logic here
 
+  // // случайное число от min до (max+1)
+  // let random = min + Math.random() * (max + 1 - min);
+  //  Math.floor((1 + Math.random() * 3)); // - случайное число от 1 до 3
+
+  const levelCharacter = Math.floor(1 + (Math.random() * maxLevel));
+
   while (true) {
-    yield new allowedTypes[Math.floor(Math.random() * (maxLevel + 1))];
+    yield new allowedTypes[Math.floor(Math.random() * (maxLevel + 1))](levelCharacter);
   }
 }
 
@@ -38,4 +44,12 @@ export function* characterGenerator(allowedTypes, maxLevel) {
  * */
 export function generateTeam(allowedTypes, maxLevel, characterCount) {
   // TODO: write logic here
+  const team = [];
+  const character = characterGenerator(allowedTypes, maxLevel, characterCount);
+  
+  for (let i = 0; characterCount > i; i++) {
+    team.push(character.next().value);
+  }
+  
+  return team;
 }

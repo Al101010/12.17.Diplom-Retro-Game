@@ -12,17 +12,30 @@
  * ```
  * */
 
-//  import Bowman from "./characters/Bowman";
-//  import Daemon from "./characters/Daemon";
-//  import Magician from "./characters/Magician";
-//  import Swordsman from "./characters/Swordsman";
-//  import Undead from "./characters/Undead";
-//  import Vampire from "./characters/Vampire";
+import { generateTeam } from "./generators";
+
+import Bowman from "./characters/Bowman";
+import Daemon from "./characters/Daemon";
+import Magician from "./characters/Magician";
+import Swordsman from "./characters/Swordsman";
+import Undead from "./characters/Undead";
+import Vampire from "./characters/Vampire";
 
 export default class Team {
   // TODO: write your logic here
-  constructor(team) {
-    this.characters = [];
-    team.forEach((item) => this.characters.push(item));
+  // constructor(team) {
+  constructor() {
+    this.charactersPlayers = [];
+    this.startOfPlayersTeam();
+    this.charactersComputer = [];
+    this.startOfComputerTeam();
+  }
+  #typesOfPlayersCharacters = [Bowman, Swordsman, Magician];
+  startOfPlayersTeam() {
+    this.charactersPlayers = generateTeam(this.#typesOfPlayersCharacters, 1, 2);
+  }
+  #typesOfComputerCharacters = [Vampire, Undead, Daemon];
+  startOfComputerTeam() {
+    this.charactersComputer = generateTeam(this.#typesOfComputerCharacters, 1, 2);
   }
 }

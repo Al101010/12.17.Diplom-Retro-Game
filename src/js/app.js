@@ -16,43 +16,77 @@ gameCtrl.init();
 
 // don't write your code here
 
-// gamePlay.drawUi('prairie');
 
-// import Bowman from './characters/Bowman'; const level_3 = new Bowman(3); console.log(level_3);
 
-import Character from "./Character";
+// console.log('-0----------------');
 
-import Bowman from "./characters/Bowman";
-import Daemon from "./characters/Daemon";
-import Magician from "./characters/Magician";
-import Swordsman from "./characters/Swordsman";
-import Undead from "./characters/Undead";
-import Vampire from "./characters/Vampire";
+// import Character from "./Character";
 
-import { characterGenerator } from "./generators";
-console.log(characterGenerator);
-const playerTypes = [Bowman, Swordsman, Magician]; // доступные классы игрока
-console.log(playerTypes);
-const playerGenerator = characterGenerator(playerTypes, 2); // в данном примере персонажи игрока могут быть 1 или 2-ого уровней
+// import Bowman from "./characters/Bowman";
+// import Daemon from "./characters/Daemon";
+// import Magician from "./characters/Magician";
+// import Swordsman from "./characters/Swordsman";
+// import Undead from "./characters/Undead";
+// import Vampire from "./characters/Vampire";
 
-const character1 = playerGenerator.next().value; // случайный персонаж из списка playerTypes с уровнем 1 или 2
-console.log(character1.type); // magician
+// console.log('-1----------------');
+// import { characterGenerator } from "./generators";
 
-import Team from "./Team";
+// const playerTypes = [Bowman, Swordsman, Magician]; // доступные классы игрока
+// // console.log(playerTypes);
+// const playerGenerator = characterGenerator(playerTypes, 2); // в данном примере персонажи игрока могут быть 1 или 2-ого уровней
 
-const characters = [new Swordsman(2), new Bowman(3)];
-const team = new Team(characters);
-console.log(team);
-console.log(team.characters);
+// const character1 = playerGenerator.next().value; // случайный персонаж из списка playerTypes с уровнем 1 или 2
+// console.log(character1); // magician
 
-console.log(team.characters[0].level);
-//---
-import PositionedCharacter from "./PositionedCharacter";
+// const character2 = playerGenerator.next().value; // случайный персонаж из списка playerTypes с уровнем 1 или 2
+// console.log(character2); // magician
 
-const character = new Bowman(2);
-const position = 8; // для поля 8x8 лучник будет находиться слева на второй строке
-const positionedCharacter = new PositionedCharacter(character, position);
-console.log(positionedCharacter);
+// const character3 = playerGenerator.next().value; // случайный персонаж из списка playerTypes с уровнем 1 или 2
+// console.log(character3); // magician
 
-gamePlay.redrawPositions([positionedCharacter]);
+// const character4 = playerGenerator.next().value; // случайный персонаж из списка playerTypes с уровнем 1 или 2
+// console.log(character4); // magician
+
+// const character5 = playerGenerator.next().value; // случайный персонаж из списка playerTypes с уровнем 1 или 2
+// console.log(character5); // magician
+// console.log('-2----------------');
+// import Team from "./Team";
+// const characters = [new Swordsman(2), new Bowman(1)]
+// const team = new Team(characters);
+
+// // const characters = [new Swordsman(2), new Bowman(3)];
+// // const team = new Team(characters);
+// console.log(team);
+// console.log(team.characters);
+
+// console.log(team.characters[0].level);
+// console.log('-3----------------');
+
+// ---
 // import PositionedCharacter from "./PositionedCharacter";
+
+// const character = new Bowman(2);
+// const position = 8; // для поля 8x8 лучник будет находиться слева на второй строке
+// const positionedCharacter = new PositionedCharacter(character, position);
+// console.log(positionedCharacter);
+
+// gamePlay.redrawPositions([positionedCharacter]);
+
+// console.log('-4----------------');
+// console.log(this.points);
+// import themes from "./themes";
+
+
+// console.log(gamePlay.drawUi(themes[this.level]));
+// console.log(themes[this.level]);
+// console.log('-5----------------');
+
+// const characters = [new Swordsman(2), new Bowman(3)];
+// const team = new Team();
+// const team = new Team(characters);
+
+// console.log(team);
+// console.log(team.characters);
+// team.startOfPlayersTeam();
+// console.log(team.characters);
