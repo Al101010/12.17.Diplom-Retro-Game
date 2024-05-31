@@ -82,6 +82,8 @@ export default class GameController {
         if (elem === 'character') {
           // console.log(this.gamePlay.cells.indexOf(this.onCellEnter.bind(this))); // тут типа -1 ----- как получить номер ячейки на которую навёл мышку -----
           console.log('в поле есть персонаж');
+          
+
         }
       });
     });
@@ -93,16 +95,12 @@ export default class GameController {
 
   onCellEnter(index) {
     // TODO: react to mouse enter
-    // const characterInField = this.thereCharacterField(index);
-
-    // if (characterInField) {
-    //   this.gamePlay.showCellTooltip(
-    //     `\u{1F396} ${characterInCell.character.level} \u{2694} ${characterInCell.character.attack} \u{1F6E1} ${characterInCell.character.defence} \u{2764} ${characterInCell.character.health}`,
-    //     index
-    //   );
-    // }
-    // return this.characters.find((item) => item.position === index);
+    const characterInField = this.gamePlay.cells.characters.find((item) => item.position === index);
+    if (characterInField) {
+      console.log('персонаж в этом поле - ' + this.gamePlay.cells.characters.position);
+    }
   }
+
 
   onCellLeave(index) {
     // TODO: react to mouse leave
