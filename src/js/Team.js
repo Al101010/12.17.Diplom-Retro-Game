@@ -29,6 +29,7 @@ export default class Team {
     this.startOfPlayersTeam();
     this.charactersComputer = [];
     this.startOfComputerTeam();
+    this.characters = []; // расположение
   }
   #typesOfPlayersCharacters = [Bowman, Swordsman, Magician];
   startOfPlayersTeam() {

@@ -4,10 +4,7 @@ import Team from "./Team";
 export default class GameController {
   constructor(gamePlay, stateService) {
     this.gamePlay = gamePlay;
-    this.stateService = stateService;
-    
-    this.characters = [];
-    
+    this.stateService = stateService;    
   }
 
   init() {
@@ -18,11 +15,6 @@ export default class GameController {
     // TODO: загрузите сохраненные данные из stateService
     
     this.gamePlay.drawUi('prairie'); // Игровое поле
-
-    // console.log(this); // тоже что и в app.js console.log(gameCtrl);
-    // this.gamePlay.addCellEnterListener(this.onCellEnter.bind(this)); //
-    
-
     this.beginningGame(); // Начало игры
   }
 
@@ -34,7 +26,7 @@ export default class GameController {
 
     function randomPositionPlayers() {
       const randomPosition = arrPositionPlayers[Math.floor(Math.random() * 16)];// Math.floor(Math.random() * 16 - случайное число от 0 до 15
-      arrPositionPlayers.splice(arrPositionPlayers.indexOf(randomPosition), 1); // удаляем номер ячейки который уже использовали
+      arrPositionPlayers.splice(arrPositionPlayers.indexOf(randomPosition), 1);
       return randomPosition;
     }
 
@@ -44,7 +36,7 @@ export default class GameController {
       positionedCharacterPlayers.push(
         new PositionedCharacter(
           item,
-          index = randomPositionPlayers()
+          randomPositionPlayers()
         )
       )
     })
@@ -63,29 +55,41 @@ export default class GameController {
       positionedCharacterComputer.push(
         new PositionedCharacter(
           item,
-          index = randomPositionComputer()
+          randomPositionComputer()
         )
       )
     })
 
-    this.characters = positionedCharacterPlayers.concat(positionedCharacterComputer);
-    this.gamePlay.redrawPositions(this.characters); // персонажи на поле плюс позиционирование на поле.
+    const character = positionedCharacterPlayers.concat(positionedCharacterComputer);
 
-    this.thereCharacterCell(); // есть ли в ячейке персонаж
+    this.gamePlay.redrawPositions(character);
+    this.thereCharacterField();
   }
 
-  thereCharacterCell() {// есть ли в ячейке персонаж
 
-    document.addEventListener("mouseover", (event) => {
-      let arrClass = event.target.className.split(' ');
-      arrClass.forEach((elem) => {
-        if (elem === 'character') {
-          // console.log(this.gamePlay.cells.indexOf(this.onCellEnter.bind(this))); // тут типа -1 ----- как получить номер ячейки на которую навёл мышку -----
-          console.log('в поле есть персонаж');
-        }
-      });
-    });
+
+
+  thereCharacterField() {// есть ли в поле персонаж
+    console.log('-');
+    document.addEventListener("mouseover", (e)=> console.log("mouseover" + ' ' + e.target.tagName));
+    document.addEventListener("mouseover", (e)=> console.log(e.target.className));
+
+
+    // if([e.target.className].forEach(element => element == character)) {
+    //   console.log('есть');
+    // }
+    // 
+    // document.addEventListener(() => console.log(this));
+    // document.getElementById('board').addEventListener("mouseover", ()=> console.log(this));
+    // if(this.characters.find((item) => item.position === index)) {
+    //   console.log('навели')
+    // };
+    // return this.characters.find((item) => item.position === index);
   }
+
+  
+
+
 
   onCellClick(index) {
     // TODO: react to click
@@ -93,14 +97,14 @@ export default class GameController {
 
   onCellEnter(index) {
     // TODO: react to mouse enter
-    // const characterInField = this.thereCharacterField(index);
+    const characterInField = this.thereCharacterField(index);
 
-    // if (characterInField) {
-    //   this.gamePlay.showCellTooltip(
-    //     `\u{1F396} ${characterInCell.character.level} \u{2694} ${characterInCell.character.attack} \u{1F6E1} ${characterInCell.character.defence} \u{2764} ${characterInCell.character.health}`,
-    //     index
-    //   );
-    // }
+    if (characterInField) {
+      this.gamePlay.showCellTooltip(
+        `\u{1F396} ${characterInCell.character.level} \u{2694} ${characterInCell.character.attack} \u{1F6E1} ${characterInCell.character.defence} \u{2764} ${characterInCell.character.health}`,
+        index
+      );
+    }
     // return this.characters.find((item) => item.position === index);
   }
 

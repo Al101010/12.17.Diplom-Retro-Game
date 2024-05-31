@@ -9,7 +9,16 @@
 </head>
 <body>
     <h1>12.17 ДЗ - Team</h1>
-    
+    <div class="para">1</div>
+    <div class="para">2</div>
+    <div class="para">3</div>
+    <div class="para">4</div>
+    <div class="para">5</div>
+    <div class="para">6</div>
+    <div class="para">7</div>
+    <div class="para">8</div>
+    <div class="para">9</div>
+    <div class="para parara">10</div>
     <script>
 class Character {
     constructor(level = 1, type = 'generic') {
@@ -19,6 +28,7 @@ class Character {
         this.health = 50;
         this.type = type;
         
+        // TODO: выбросите исключение, если кто-то использует "new Character()"
         if (new.target.name === 'Character') {
             throw new Error('исключение - запрещено использовать new Character()')
         }
@@ -70,7 +80,7 @@ class Magician extends Character {
 // console.log(bowman);
 // const magician = new Magician();
 // console.log(magician);
-console.log('--------------------------- ooops ----------------------------------');
+console.log('--------------------------- ooops -2---------------------------------');
 function* characterGenerator(allowedTypes, maxLevel) {
   // TODO: write logic here
 
@@ -84,7 +94,7 @@ function* characterGenerator(allowedTypes, maxLevel) {
     yield new allowedTypes[Math.floor(Math.random() * (maxLevel + 1))](levelCharacter);
   }
 }
-console.log('--------------------------- ooops ----------------------------------');
+console.log('--------------------------- ooops -3---------------------------------');
 
 const characters = [new Swordsman(2), new Bowman(3)];
 
@@ -110,11 +120,6 @@ class Team {
     this.characters = [];
     this.characters = generateTeam(this.#typesOfPlayersCharacters, 3, 3)
   }
-
-
-//   playerStartTeam() {
-//     this.characters = generateTeam(this.#allowedTypesPlayerStart, 1, 1, 2);
-//   }  
 }
 
 function generateTeam(allowedTypes, maxLevel, characterCount) {
@@ -128,11 +133,27 @@ function generateTeam(allowedTypes, maxLevel, characterCount) {
   
   return team;
 }
-
+console.log('--------------------------- ooops -4---------------------------------');
 
 const team = new Team(characters);
 console.log(team);
 console.log(team.characters);
+
+console.log('--------------------------- ooops -5---------------------------------');
+let mySkills = 'Native JavaScript-React-HTML-CSS'
+mySkills = mySkills.split(' ');
+console.log(mySkills);
+
+console.log('--------------------------- ooops -пронумеруем id---------------------------------');
+
+const paragraphs = document.getElementsByClassName('para'); // отбираем по классу
+// document.getElementsByClassName('para')[0].id = 0;
+for (let i = 0; i < paragraphs.length; i++) {
+    console.log(i);
+    document.getElementsByClassName('para')[i].id = i;
+}
+console.log(paragraphs.length); // отбрали всего 10 - их и нужно пронумеровать в id
+console.log(paragraphs);
     </script>
 </body>
 </html>
