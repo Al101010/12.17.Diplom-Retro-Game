@@ -4,10 +4,9 @@ import Team from "./Team";
 export default class GameController {
   constructor(gamePlay, stateService) {
     this.gamePlay = gamePlay;
-    this.stateService = stateService;
+    this.stateService = stateService; 
     
-    this.characters = [];
-    
+    this.positionedCharacter = [];
   }
 
   init() {
@@ -20,12 +19,11 @@ export default class GameController {
     this.gamePlay.drawUi('prairie'); // Игровое поле
 
     // console.log(this); // тоже что и в app.js console.log(gameCtrl);
-    // this.gamePlay.addCellEnterListener(this.onCellEnter.bind(this)); //
     
 
     this.beginningGame(); // Начало игры
   }
-
+  
   beginningGame() {
     // Игрок
     const team = new Team();
@@ -68,25 +66,16 @@ export default class GameController {
       )
     })
 
-    this.characters = positionedCharacterPlayers.concat(positionedCharacterComputer);
-    this.gamePlay.redrawPositions(this.characters); // персонажи на поле плюс позиционирование на поле.
+    let positionedCharacter = positionedCharacterPlayers.concat(positionedCharacterComputer);
+    this.positionedCharacter = positionedCharacter; //  сохранил позиции персонажей(войнов)
+    // console.log(this.positionedCharacter);
+    this.gamePlay.redrawPositions(positionedCharacter); // Раставили участников(войнов)
 
-    this.thereCharacterCell(); // есть ли в ячейке персонаж
+    this.listenerInCell(); // ставим прослушивателе событий
   }
 
-  thereCharacterCell() {// есть ли в ячейке персонаж
-
-    document.addEventListener("mouseover", (event) => {
-      let arrClass = event.target.className.split(' ');
-      arrClass.forEach((elem) => {
-        if (elem === 'character') {
-          // console.log(this.gamePlay.cells.indexOf(this.onCellEnter.bind(this))); // тут типа -1 ----- как получить номер ячейки на которую навёл мышку -----
-          console.log('в поле есть персонаж');
-          
-
-        }
-      });
-    });
+  listenerInCell() {
+    this.gamePlay.addCellEnterListener(this.onCellEnter.bind(this)); // ставим на наведение мышки
   }
 
   onCellClick(index) {
@@ -94,13 +83,29 @@ export default class GameController {
   }
 
   onCellEnter(index) {
-    // TODO: react to mouse enter
-    const characterInField = this.gamePlay.cells.characters.find((item) => item.position === index);
-    if (characterInField) {
-      console.log('персонаж в этом поле - ' + this.gamePlay.cells.characters.position);
+    let cHarInCell = this.gamePlay.cells[index].children[0];
+    if (cHarInCell) { // если у элемента есть дочерний элемент
+      let arrClass = cHarInCell.className.split(' ');
+
+      arrClass.forEach((elem) => {
+
+        if (elem === 'character') { // если сласс = 'character'
+          console.log(index);
+
+          this.positionedCharacter.forEach((item) => {
+            if (item.position == index) {
+              this.gamePlay.showCellTooltip(
+                `\u{1F396} ${item.character.level} \u{2694} ${item.character.attack} \u{1F6E1} ${item.character.defence} \u{2764} ${item.character.health}`,
+                index
+              );
+            }
+          });
+        }
+        
+      });
+
     }
   }
-
 
   onCellLeave(index) {
     // TODO: react to mouse leave
