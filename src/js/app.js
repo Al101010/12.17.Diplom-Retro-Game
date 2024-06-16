@@ -16,6 +16,6 @@ gameCtrl.init();
 
 // don't write your code here
 
-console.log(gameCtrl);
+// console.log(gameCtrl.gameState);
 // console.log(this);// пусто
 
