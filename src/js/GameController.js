@@ -204,7 +204,7 @@ export default class GameController {
   }
 
   completingThePlayerAttack() { // завершение атаки игрока после тайм-аута    // console.log('completingThePlayerAttack() - завершение атаки игрока после тайм-аута') // ?????
-    // console.log(this.gameState);
+    console.log(this.gameState);
     // let teamPlayer = this.gameState.positionedCharacters.filter(item => ['bowman', 'swordsman', 'magician'].includes(item.character.type)); 
     let teamComputer = this.gameState.positionedCharacters.filter(item => ['vampire', 'undead', 'daemon'].includes(item.character.type));
 
