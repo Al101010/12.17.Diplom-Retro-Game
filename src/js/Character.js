@@ -15,7 +15,7 @@
 export default class Character {
   constructor(level = 1, type = 'generic') {
       this.level = level;
-      this.health = 100;
+      this.health = 50;
 
       // const types = ['swordsman', 'bowman', 'magician', 'daemon', 'undead', 'vampire', ''];
       // if (types.indexOf(type) !== -1) {
