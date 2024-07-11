@@ -132,7 +132,7 @@ export default class GameController {
       positionedCharacter.character.health = positionedCharacter.character.health + 80;
       if (positionedCharacter.character.health > 100) {
         positionedCharacter.character.health = 100;
-      };
+      }
       positionedCharacter.character.attack = positionedCharacter.character.attack + 5;
       positionedCharacter.character.defence = positionedCharacter.character.defence + 5;
       // console.log(positionedCharacter);
@@ -189,7 +189,7 @@ export default class GameController {
   thePlayerLost() { //    console.log('А игрок проиграл!!!')    // нужно снять все выделения
     for (let i = 0; i < this.gamePlay.cells.length; i++) {
       this.gamePlay.deselectCell(i);// нужно перебрать все клетки и снять выделение this.gamePlay.cells
-    };
+    }
     GamePlay.showError('новая игра'); // ???
     this.newGame();     // beginningGame(); - переделал
   }
@@ -282,7 +282,7 @@ export default class GameController {
             if (teamPlayer.length == 0) {
               console.log('в команде игрока больше нет ни кого teamPlayer.length == 0');
               return this.thePlayerLost();
-            };
+            }
 
             let randomIndex = () => Math.floor(Math.random() * (teamPlayer.length)); // генерируем случайный индекс в допустимом диапазоне
             let randomPlayer = teamPlayer[randomIndex()].position; // случайный персонаж игрока             // console.log(teamPlayer);
@@ -338,7 +338,7 @@ export default class GameController {
               if (['bowman', 'swordsman', 'magician'].includes(item.character.type) && this.gameState.cellWithActiveCharacter !== item.position) {
                 for (let i = 0; i < this.gamePlay.cells.length; i++) {
                   this.gamePlay.deselectCell(i);// нужно перебрать все клетки и снять выделение this.gamePlay.cells
-                };
+                }
                 this.gamePlay.selectCell(index, "yellow"); // выделяем игрока - круг желтого цвета.
                 this.gameState.cellWithActiveCharacter = item.position; // ячейка с активным персонажем
               } else 
@@ -417,7 +417,7 @@ export default class GameController {
       if (this.gamePlay.cells[i].childNodes.length == 0) {
         this.gamePlay.deselectCell(i); //  снимаем выделение со всех ячеек где нет персонажей
       }
-    };
+    }
 
     let cHarInCell = this.gamePlay.cells[index].children[0];
     if (cHarInCell) { // если у элемента есть дочерний элемент
@@ -444,7 +444,7 @@ export default class GameController {
           }
         } else if (['vampire', 'undead', 'daemon'].includes(elem)) { // console.log('противник');
           this.gamePlay.setCursor(cursors.auto);
-        };
+        }
       });
     } else {      // console.log('Наведение - нет дочерних элементов, значит чистое поле');
       this.gamePlay.setCursor(cursors.notallowed); // меняем курсор на notallowed
@@ -459,7 +459,7 @@ export default class GameController {
             this.gamePlay.setCursor(cursors.pointer); // меняем курсор на pointer
           }
         }
-      };
+      }
     }
   }
 
