@@ -31,7 +31,7 @@ export default class GameController {
     this.gamePlay.drawUi('prairie'); // Игровое поле desert
     for (let i = 0; i < this.gamePlay.cells.length; i++) {
       this.gamePlay.deselectCell(i);// нужно перебрать все клетки и снять выделение this.gamePlay.cells
-    };
+    }
     this.gameState.cellWithActiveCharacter = null;
     console.log('newGame() - новая игра');
     this.beginningGame();
@@ -59,14 +59,22 @@ export default class GameController {
 
     const positionedCharacterPlayers = [];
 
-    team.charactersPlayers.forEach((item, index) => {
+    team.charactersPlayers.forEach((item) => {
       positionedCharacterPlayers.push(
         new PositionedCharacter(
-          item,
-          index = randomPositionPlayers()
+          item
         )
       )
     })
+    
+    // team.charactersPlayers.forEach((item, index) => {
+    //   positionedCharacterPlayers.push(
+    //     new PositionedCharacter(
+    //       item,
+    //       index = randomPositionPlayers()
+    //     )
+    //   )
+    // })
     // Теперь компьютер
     const arrPositionComputer = [6, 7, 14, 15, 22, 23, 30, 31, 38, 39, 46, 47, 54, 55, 62, 63];
 
