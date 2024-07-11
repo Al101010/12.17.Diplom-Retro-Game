@@ -285,7 +285,7 @@ export function variantsToGo(type, index) {
     } else if (index === 52) {
       return [20, 28, 36, 44, 45, 38, 31, 53, 54, 55, 61, 60, 59, 51, 50, 49, 48, 43, 34, 25, 16]
     } else if (index === 53) {
-      return [21, 29, 37, 45, 46, , 39, 54, 55, 62, 61, 60, 52, 51, 50, 49, 44, 35, 26, 17]
+      return [21, 29, 37, 45, 46, 39, 54, 55, 62, 61, 60, 52, 51, 50, 49, 44, 35, 26, 17]
     } else if (index === 54) {
       return [22, 30, 38, 46, 47, 55, 63, 62, 61, 53, 52, 51, 50, 45, 36, 27, 18]
     } else if (index === 55) {
@@ -307,7 +307,7 @@ export function variantsToGo(type, index) {
     } else if (index === 63) {
       return [31, 39, 47, 55, 62, 61, 60, 59, 54, 45, 36, 27]
     }
-  };
+  }
 
   if (type === 'magician' || type === 'daemon') {
     if (index === 0) {
@@ -439,7 +439,7 @@ export function variantsToGo(type, index) {
     } else if (index === 63) {
       return [54, 55, 62]
     }
-  };
+  }
 }
 
 export function variantsNearBattle(type, index) {
@@ -573,5 +573,5 @@ export function variantsNearBattle(type, index) {
     } else if (index === 63) {
       return [54, 55, 62]
     }
-  };
+  }
 }
