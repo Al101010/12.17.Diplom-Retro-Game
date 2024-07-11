@@ -149,11 +149,12 @@ export default class GameController {
 
     const positionedCharacterComputer = [];
 
-    team.charactersComputer.forEach((item, index) => {
+    // team.charactersComputer.forEach((item, index) => {
+    team.charactersComputer.forEach((item) => {
       positionedCharacterComputer.push(
         new PositionedCharacter(
           item,
-          index = randomPositionComputer()
+          // index = randomPositionComputer()
         )
       )
     });
