@@ -343,8 +343,7 @@ export default class GameController {
                 this.gameState.cellWithActiveCharacter = item.position; // ячейка с активным персонажем
               } else 
               // 2. Если мышь кликает: 1-где персонажи игрока и 2-активный есть
-              if(['bowman', 'swordsman', 'magician'].includes(item.character.type) && this.gameState.cellWithActiveCharacter === item.position) {
-              } 
+              // if(['bowman', 'swordsman', 'magician'].includes(item.character.type) && this.gameState.cellWithActiveCharacter === item.position) {} 
               // 3. Если мышь кликает: 1-где персонажи противника
               else if(['vampire', 'undead', 'daemon'].includes(item.character.type)) { // если противник
                 // 4. Если мышь кликает: 1-где есть красный круг и 2-активный есть
@@ -354,7 +353,7 @@ export default class GameController {
 
                   const damage = Math.max(attacker.attack - target.defence, attacker.attack * 0.1); // 
                   // console.log(damage); // ???
-                  let teamComputer = this.gameState.positionedCharacters.filter(item => ['vampire', 'undead', 'daemon'].includes(item.character.type));
+                  // let teamComputer = this.gameState.positionedCharacters.filter(item => ['vampire', 'undead', 'daemon'].includes(item.character.type));
 
                   (async () => { // атака игрока
                     await this.gamePlay.showDamage(index, damage);
@@ -405,9 +404,9 @@ export default class GameController {
       console.log('this.gameState.cellWithActiveCharacter = null');
       this.motionPlayer();
     }
-    if (this.gameState.cellWithActiveCharacter !== null && !this.gameState.positionedCharacters.includes(elem => elem.position == this.gameState.cellWithActiveCharacter)) {
-      let teamPlayer = this.gameState.positionedCharacters.filter(item => ['bowman', 'swordsman', 'magician'].includes(item.character.type));
-    }
+    // if (this.gameState.cellWithActiveCharacter !== null && !this.gameState.positionedCharacters.includes(elem => elem.position == this.gameState.cellWithActiveCharacter)) {
+    //   let teamPlayer = this.gameState.positionedCharacters.filter(item => ['bowman', 'swordsman', 'magician'].includes(item.character.type));
+    // }
     this.gameState.positionedCharacters.forEach((item) => { // перебираем (войнов + их позиции) 
       if(['vampire', 'undead', 'daemon'].includes(item.character.type)) {        // console.log(item.position);
         this.gamePlay.deselectCell(item.position); //  снимаем выделение с демонов и всякой нечести
