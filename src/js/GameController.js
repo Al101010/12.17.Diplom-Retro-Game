@@ -49,7 +49,13 @@ export default class GameController {
   beginningGame() { // Начало игры
     // Игрок
     const team = new Team();
-    const arrPositionPlayers = [0, 1, 8, 9, 16, 17, 24, 25, 32, 33, 40, 41, 48, 49, 56, 57];
+    // const arrPositionPlayers = [0, 1, 8, 9, 16, 17, 24, 25, 32, 33, 40, 41, 48, 49, 56, 57];
+
+    // function randomPositionPlayers() {
+    //   const randomPosition = arrPositionPlayers[Math.floor(Math.random() * arrPositionPlayers.length)];// Math.floor(Math.random() * 16 - случайное число от 0 до 15
+    //   arrPositionPlayers.splice(arrPositionPlayers.indexOf(randomPosition), 1); // удаляем номер ячейки который уже использовали
+    //   return randomPosition;
+    // }
 
     const positionedCharacterPlayers = [];
 
@@ -80,11 +86,12 @@ export default class GameController {
 
     const positionedCharacterComputer = [];
 
-    team.charactersComputer.forEach((item, index) => {
+    // team.charactersComputer.forEach((item, index) => {
+    team.charactersComputer.forEach((item) => {
       positionedCharacterComputer.push(
         new PositionedCharacter(
           item,
-          index = randomPositionComputer()
+          // index = randomPositionComputer()
         )
       )
     })
