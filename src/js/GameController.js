@@ -341,9 +341,9 @@ export default class GameController {
                 }
                 this.gamePlay.selectCell(index, "yellow"); // выделяем игрока - круг желтого цвета.
                 this.gameState.cellWithActiveCharacter = item.position; // ячейка с активным персонажем
-              } else 
+              }  
               // 2. Если мышь кликает: 1-где персонажи игрока и 2-активный есть
-              // if(['bowman', 'swordsman', 'magician'].includes(item.character.type) && this.gameState.cellWithActiveCharacter === item.position) {} 
+              // else if(['bowman', 'swordsman', 'magician'].includes(item.character.type) && this.gameState.cellWithActiveCharacter === item.position) {} 
               // 3. Если мышь кликает: 1-где персонажи противника
               else if(['vampire', 'undead', 'daemon'].includes(item.character.type)) { // если противник
                 // 4. Если мышь кликает: 1-где есть красный круг и 2-активный есть
