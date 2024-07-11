@@ -105,6 +105,15 @@ export default class GameController {
   }
 
   nextLevel_1() {
+    const arrPositionPlayers = [0, 1, 8, 9, 16, 17, 24, 25, 32, 33, 40, 41, 48, 49, 56, 57];
+
+    function randomPositionPlayers() {
+      const randomPosition = arrPositionPlayers[Math.floor(Math.random() * arrPositionPlayers.length)];// Math.floor(Math.random() * 16 - случайное число от 0 до 15
+      arrPositionPlayers.splice(arrPositionPlayers.indexOf(randomPosition), 1); // удаляем номер ячейки который уже использовали
+      return randomPosition;
+    }
+
+
     this.gameState.level++; // Повышаем уровень игры
     console.log(this.gameState.level);
     // для начала нужно до укомплекторать команду игрока
@@ -113,13 +122,9 @@ export default class GameController {
     // Игрок
     if (this.gameState.positionedCharacters.length == 2) {
       
-      const arrPositionPlayers = [0, 1, 8, 9, 16, 17, 24, 25, 32, 33, 40, 41, 48, 49, 56, 57];
       
-      function randomPositionPlayers() {
-        const randomPosition = arrPositionPlayers[Math.floor(Math.random() * arrPositionPlayers.length)];// Math.floor(Math.random() * 16 - случайное число от 0 до 15
-        arrPositionPlayers.splice(arrPositionPlayers.indexOf(randomPosition), 1); // удаляем номер ячейки который уже использовали
-        return randomPosition;
-      }
+      
+      
 
       this.gameState.positionedCharacters.forEach(positionedCharacter => {
         positionedCharacter.position = randomPositionPlayers();
@@ -139,7 +144,7 @@ export default class GameController {
     });
 
     // Теперь компьютер
-    const arrPositionComputer = [6, 7, 14, 15, 22, 23, 30, 31, 38, 39, 46, 47, 54, 55, 62, 63];
+    // const arrPositionComputer = [6, 7, 14, 15, 22, 23, 30, 31, 38, 39, 46, 47, 54, 55, 62, 63];
 
     // function randomPositionComputer() {
     //   const randomPosition = arrPositionComputer[Math.floor(Math.random() * arrPositionComputer.length)];// Math.floor(Math.random() * 16 - случайное число от 0 до 15
