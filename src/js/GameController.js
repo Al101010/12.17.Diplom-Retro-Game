@@ -76,7 +76,7 @@ export default class GameController {
     //   )
     // })
     // Теперь компьютер
-    const arrPositionComputer = [6, 7, 14, 15, 22, 23, 30, 31, 38, 39, 46, 47, 54, 55, 62, 63];
+    // const arrPositionComputer = [6, 7, 14, 15, 22, 23, 30, 31, 38, 39, 46, 47, 54, 55, 62, 63];
 
     // function randomPositionComputer() {
     //   const randomPosition = arrPositionComputer[Math.floor(Math.random() * arrPositionComputer.length)];// Math.floor(Math.random() * 16 - случайное число от 0 до 15
