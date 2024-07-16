@@ -1,11 +1,14 @@
 import PositionedCharacter from "./PositionedCharacter";
 import Team from "./Team";
+import { Team2 } from "./Team";
 import GamePlay from "./GamePlay";
 import cursors from "./cursors";
 import GameState from "./GameState";
 // 
 import { variantsToGo } from "./utils";
 import { variantsNearBattle } from "./utils";
+
+import { characterGenerator } from "./generators"; // попробуем доукомплектовать
 
 
 export default class GameController {
@@ -31,10 +34,12 @@ export default class GameController {
     this.gamePlay.drawUi('prairie'); // Игровое поле desert
     for (let i = 0; i < this.gamePlay.cells.length; i++) {
       this.gamePlay.deselectCell(i);// нужно перебрать все клетки и снять выделение this.gamePlay.cells
-    }
+    };
     this.gameState.cellWithActiveCharacter = null;
+
     console.log('newGame() - новая игра');
     this.beginningGame();
+    // console.log(this.gameState);
   }
   
   saveGame() {
@@ -49,49 +54,40 @@ export default class GameController {
   beginningGame() { // Начало игры
     // Игрок
     const team = new Team();
-    // const arrPositionPlayers = [0, 1, 8, 9, 16, 17, 24, 25, 32, 33, 40, 41, 48, 49, 56, 57];
+    const arrPositionPlayers = [0, 1, 8, 9, 16, 17, 24, 25, 32, 33, 40, 41, 48, 49, 56, 57];
 
-    // function randomPositionPlayers() {
-    //   const randomPosition = arrPositionPlayers[Math.floor(Math.random() * arrPositionPlayers.length)];// Math.floor(Math.random() * 16 - случайное число от 0 до 15
-    //   arrPositionPlayers.splice(arrPositionPlayers.indexOf(randomPosition), 1); // удаляем номер ячейки который уже использовали
-    //   return randomPosition;
-    // }
+    function randomPositionPlayers() {
+      const randomPosition = arrPositionPlayers[Math.floor(Math.random() * arrPositionPlayers.length)];// Math.floor(Math.random() * 16 - случайное число от 0 до 15
+      arrPositionPlayers.splice(arrPositionPlayers.indexOf(randomPosition), 1); // удаляем номер ячейки который уже использовали
+      return randomPosition;
+    }
 
     const positionedCharacterPlayers = [];
 
-    team.charactersPlayers.forEach((item) => {
+    team.charactersPlayers.forEach((item, index) => {
       positionedCharacterPlayers.push(
         new PositionedCharacter(
-          item
+          item,
+          index = randomPositionPlayers()
         )
       )
     })
-    
-    // team.charactersPlayers.forEach((item, index) => {
-    //   positionedCharacterPlayers.push(
-    //     new PositionedCharacter(
-    //       item,
-    //       index = randomPositionPlayers()
-    //     )
-    //   )
-    // })
     // Теперь компьютер
-    // const arrPositionComputer = [6, 7, 14, 15, 22, 23, 30, 31, 38, 39, 46, 47, 54, 55, 62, 63];
+    const arrPositionComputer = [6, 7, 14, 15, 22, 23, 30, 31, 38, 39, 46, 47, 54, 55, 62, 63];
 
-    // function randomPositionComputer() {
-    //   const randomPosition = arrPositionComputer[Math.floor(Math.random() * arrPositionComputer.length)];// Math.floor(Math.random() * 16 - случайное число от 0 до 15
-    //   arrPositionComputer.splice(arrPositionComputer.indexOf(randomPosition), 1);
-    //   return randomPosition;
-    // }
+    function randomPositionComputer() {
+      const randomPosition = arrPositionComputer[Math.floor(Math.random() * arrPositionComputer.length)];// Math.floor(Math.random() * 16 - случайное число от 0 до 15
+      arrPositionComputer.splice(arrPositionComputer.indexOf(randomPosition), 1);
+      return randomPosition;
+    }
 
     const positionedCharacterComputer = [];
 
-    // team.charactersComputer.forEach((item, index) => {
-    team.charactersComputer.forEach((item) => {
+    team.charactersComputer.forEach((item, index) => {
       positionedCharacterComputer.push(
         new PositionedCharacter(
           item,
-          // index = randomPositionComputer()
+          index = randomPositionComputer()
         )
       )
     })
@@ -104,7 +100,7 @@ export default class GameController {
     this.motionPlayer(); // Движение игрока, выбираем случайного и делаем активным
   }
 
-  nextLevel_1() {
+  nextLevel() {
     const arrPositionPlayers = [0, 1, 8, 9, 16, 17, 24, 25, 32, 33, 40, 41, 48, 49, 56, 57];
 
     function randomPositionPlayers() {
@@ -113,89 +109,136 @@ export default class GameController {
       return randomPosition;
     }
 
+    if (this.gameState.level > 3) {
+      console.log('перешли на 5 уровень, такого НЕТ');
+      this.gameState.level++; // Повышаем уровень игры
+      console.log(this.gameState);
+    } else if (this.gameState.level === 3) {
+      console.log('перешли на 4 уровень, это последний');
+      this.gameState.level++; // Повышаем уровень игры
+      console.log(this.gameState);
+    } else if (this.gameState.level === 2) {
+      console.log('перешли на 3 уровень');
+      this.gameState.level++; // Повышаем уровень игры
+      console.log(this.gameState);
+      // нужно до укомплекторать команды - уровень 3
+      const team = new Team();
+      // Игрок
 
-    this.gameState.level++; // Повышаем уровень игры
-    console.log(this.gameState.level);
-    // для начала нужно до укомплекторать команду игрока
-    const team = new Team();
-    console.log(team);
-    // Игрок
-    if (this.gameState.positionedCharacters.length == 2) {
-      
-      
-      
-      
+    } else if (this.gameState.level === 1) {// Это если переход c первого уровеня
+      this.gameState.level++; // Повышаем уровень игры
+      console.log(this.gameState);
+      console.log('перешли на 2 уровень');
+      // нужно до укомплекторать команды - уровень 2
+      const team2 = new Team2();
+      console.log(team2);
+      // Игрок ------------------------------------------------------------------------
+      // this.gameState.positionedCharacters.forEach(elem => {
+      //     console.log(elem);
+      //   });
+
+      // let teamPlayer = this.gameState.positionedCharacters.filter(item => ['bowman', 'swordsman', 'magician'].includes(item.character.type));
+      // console.log(this.gameState.positionedCharacters);
+
+      // let characterMagician = null;
+      const arrPositionPlayers = [0, 1, 8, 9, 16, 17, 24, 25, 32, 33, 40, 41, 48, 49, 56, 57];
+
+      if (this.gameState.positionedCharacters.length == 2) {
+        // нужно добавить одного (желательно - magician)
+        // const randomPosition = arrPositionComputer[Math.floor(Math.random() * arrPositionComputer.length)];
+        // Math.floor(Math.random() * 16 - случайное число от 0 до 15
+        let randomIndexTeam = Math.floor(Math.random() * 16) // - случайное index от 0 до 15
+
+
+        // this.gameState.positionedCharacters.forEach(elem => {
+        //   console.log(elem);
+        // });
+
+        // console.log();
+        // for (let i = 0; i > team2.charactersPlayers.length; i++) {}
+      } 
+      // else if (teamPlayer.length == 1) {
+      //   characterMagician = characterGenerator(['magician', 'magician'], 2, 1);
+      //   // ещё нужно добавить персонажа с мечом или стрелами
+      // }
 
       this.gameState.positionedCharacters.forEach(positionedCharacter => {
         positionedCharacter.position = randomPositionPlayers();
+      });  // придумываем случайную позицию каждому
+
+      this.gameState.positionedCharacters.forEach(positionedCharacter => {
+        // console.log(positionedCharacter.character.level);
+        positionedCharacter.character.level++;
+        positionedCharacter.character.health = positionedCharacter.character.health + 80;
+        if (positionedCharacter.character.health > 100) {
+          positionedCharacter.character.health = 100;
+        };
+        positionedCharacter.character.attack = positionedCharacter.character.attack + 5;
+        positionedCharacter.character.defence = positionedCharacter.character.defence + 5;
+        // console.log(positionedCharacter);
       });
-    }
 
-    this.gameState.positionedCharacters.forEach(positionedCharacter => {
-      // console.log(positionedCharacter.character.level);
-      positionedCharacter.character.level++;
-      positionedCharacter.character.health = positionedCharacter.character.health + 80;
-      if (positionedCharacter.character.health > 100) {
-        positionedCharacter.character.health = 100;
+      // console.log(teamPlayer);
+      // let randomIndex = () => Math.floor(Math.random() * (teamPlayer.length)); // генерируем случайный индекс в допустимом диапазоне
+      // let randomPlayer = teamPlayer[randomIndex()].position; // случайный персонаж игрока             // console.log(teamPlayer);
+      // this.gamePlay.selectCell(randomPlayer, "yellow"); // выделяем игрока - круг желтого цвета.
+      // this.gameState.cellWithActiveCharacter = randomPlayer; // ячейка с активным персонажем
+      // console.log(this.gameState.cellWithActiveCharacter);
+
+      // Теперь компьютер
+      const arrPositionComputer = [6, 7, 14, 15, 22, 23, 30, 31, 38, 39, 46, 47, 54, 55, 62, 63];
+
+      function randomPositionComputer() {
+        const randomPosition = arrPositionComputer[Math.floor(Math.random() * arrPositionComputer.length)];// Math.floor(Math.random() * 16 - случайное число от 0 до 15
+        arrPositionComputer.splice(arrPositionComputer.indexOf(randomPosition), 1);
+        return randomPosition;
       }
-      positionedCharacter.character.attack = positionedCharacter.character.attack + 5;
-      positionedCharacter.character.defence = positionedCharacter.character.defence + 5;
-      // console.log(positionedCharacter);
-    });
 
-    // Теперь компьютер
-    // const arrPositionComputer = [6, 7, 14, 15, 22, 23, 30, 31, 38, 39, 46, 47, 54, 55, 62, 63];
+      const positionedCharacterComputer = [];
 
-    // function randomPositionComputer() {
-    //   const randomPosition = arrPositionComputer[Math.floor(Math.random() * arrPositionComputer.length)];// Math.floor(Math.random() * 16 - случайное число от 0 до 15
-    //   arrPositionComputer.splice(arrPositionComputer.indexOf(randomPosition), 1);
-    //   return randomPosition;
-    // }
-
-    const positionedCharacterComputer = [];
-
-    // team.charactersComputer.forEach((item, index) => {
-    team.charactersComputer.forEach((item) => {
-      positionedCharacterComputer.push(
-        new PositionedCharacter(
-          item,
-          // index = randomPositionComputer()
+      team2.charactersComputer.forEach((item, index) => {
+        positionedCharacterComputer.push(
+          new PositionedCharacter(
+            item,
+            index = randomPositionComputer()
+          )
         )
-      )
-    });
+      });
 
-    positionedCharacterComputer.forEach(positionedCharacter => {
-      positionedCharacter.character.level++;
-      positionedCharacter.character.health = 50;
-      positionedCharacter.character.attack = positionedCharacter.character.attack + 5;
-      positionedCharacter.character.defence = positionedCharacter.character.defence + 5;
-    });
+      positionedCharacterComputer.forEach(positionedCharacter => {
+        // positionedCharacter.character.level++;
+        positionedCharacter.character.health = 50;
+        positionedCharacter.character.attack = positionedCharacter.character.attack + 5;
+        positionedCharacter.character.defence = positionedCharacter.character.defence + 5;
+      });
 
-    positionedCharacterComputer.forEach(elem => {
-      this.gameState.positionedCharacters.push(elem);
-    })
+      positionedCharacterComputer.forEach(elem => {
+        this.gameState.positionedCharacters.push(elem);
+      })
 
-    console.log(this.gameState.positionedCharacters);
-    
+      // console.log(this.gameState.positionedCharacters);
+      
 
-    if (this.gameState.positionedCharacters.length == 1) {
-      // нужно добавить ещё одного
-      console.log('всего 1 воин, нужно добавить ещё одного');
+      if (this.gameState.positionedCharacters.length == 1) {
+        // нужно добавить ещё одного
+        console.log('всего 1 воин, нужно добавить ещё одного');
+      }
+
+      this.gamePlay.drawUi('desert'); // Игровое поле desert
+      this.gamePlay.redrawPositions(this.gameState.positionedCharacters); // Раставили участников(войнов)
+
+
+      this.gameState.cellWithActiveCharacter = null;
+      // this.listenerInCell(); // ставим прослушивателе событий
+      this.motionPlayer(); // Движение игрока, выбираем случайного и делаем активным
+      // ------------- если с 1 на 2 уровень переход конец ------------------------------------------------------------------------------
     }
-
-    this.gamePlay.drawUi('desert'); // Игровое поле desert
-    this.gamePlay.redrawPositions(this.gameState.positionedCharacters); // Раставили участников(войнов)
-
-
-    this.gameState.cellWithActiveCharacter = null;
-    this.listenerInCell(); // ставим прослушивателе событий
-    this.motionPlayer(); // Движение игрока, выбираем случайного и делаем активным
   } 
 
   thePlayerLost() { //    console.log('А игрок проиграл!!!')    // нужно снять все выделения
     for (let i = 0; i < this.gamePlay.cells.length; i++) {
       this.gamePlay.deselectCell(i);// нужно перебрать все клетки и снять выделение this.gamePlay.cells
-    }
+    };
     GamePlay.showError('новая игра'); // ???
     this.newGame();     // beginningGame(); - переделал
   }
@@ -207,26 +250,25 @@ export default class GameController {
 
   possibleAttack() { // возможная атака
     let activ = this.gameState.positionedCharacters.find((elem) => elem.position === this.gameState.cellWithActiveCharacter);
-    if (!this.gameState.cellWithActiveCharacter) {
-      console.log(' - нет активного - ');
-      console.log(this.gameState.cellWithActiveCharacter);
-    } else if (!activ) {
-      console.log(activ);
-       return console.log('функция this.active() выдаёт - '); // + this.active())
-
-    }
+    // if (!this.gameState.cellWithActiveCharacter) {
+    //   console.log(' - нет активного - ');
+    //   console.log(this.gameState.cellWithActiveCharacter);
+    // } else if (!activ) {
+    //   console.log(activ);
+    //    return console.log('функция this.active() выдаёт - '); // + this.active())
+    // }
     return variantsNearBattle(activ.character.type, this.gameState.cellWithActiveCharacter) // может атаковать ячейки
   }
 
   completingThePlayerAttack() { // завершение атаки игрока после тайм-аута    // console.log('completingThePlayerAttack() - завершение атаки игрока после тайм-аута') // ?????
-    console.log(this.gameState);
+    // console.log(this.gameState);
     // let teamPlayer = this.gameState.positionedCharacters.filter(item => ['bowman', 'swordsman', 'magician'].includes(item.character.type)); 
     let teamComputer = this.gameState.positionedCharacters.filter(item => ['vampire', 'undead', 'daemon'].includes(item.character.type));
 
     if(teamComputer.length == 0) {
       // console.log('в команде компьютера - ни кого не осталось. Победа в этом уровне и переход на следующий');
-      // this.nextLevel_1(); // - hf,jnftn yj gjrf hfyj
-      this.nextLevel_1();
+      // this.nextLevel_1(); // - hf,jnftn yj gjrf hfyj // - работает но пока рано
+      this.nextLevel();
     } else {
       // console.log('в команде компьютера - есть кому ответку нарисовать или ходить');
       this.motionComputer();
@@ -238,10 +280,10 @@ export default class GameController {
   }
 
   motionPlayer() { // движение игрока     // 
-    console.log('движение игрока - motionPlayer()');
-    console.log(this.gameState);
+    // console.log('движение игрока - motionPlayer()');
+    // console.log(this.gameState);
     if (this.gameState.cellWithActiveCharacter == null) {
-      console.log('движение игрока - this.gameState.cellWithActiveCharacter == null');
+      // console.log('движение игрока - this.gameState.cellWithActiveCharacter == null');
       let teamPlayer = this.gameState.positionedCharacters.filter(item => ['bowman', 'swordsman', 'magician'].includes(item.character.type)); 
 
       let randomIndex = () => Math.floor(Math.random() * (teamPlayer.length)); // генерируем случайный индекс в допустимом диапазоне
@@ -249,11 +291,13 @@ export default class GameController {
 
       this.gamePlay.selectCell(randomPlayer, "yellow"); // выделяем игрока - круг желтого цвета.
       this.gameState.cellWithActiveCharacter = randomPlayer; // ячейка с активным персонажем
+
+      // console.log(this.gameState);
     }
   }
   
   motionComputer() { // движение Компьютера     
-    console.log('ответка компьютера - motionComputer()');
+    // console.log('ответка компьютера - motionComputer()');
 
 
     let teamComputer = this.gameState.positionedCharacters.filter(item => ['vampire', 'undead', 'daemon'].includes(item.character.type));
@@ -274,35 +318,36 @@ export default class GameController {
     if (target) { //      console.log(target); // если есть кого атаковать
       const damage = Math.max(attacker.character.attack - target.character.defence, attacker.character.attack * 0.1);
 
-      (async () => {
-        await this.gamePlay.showDamage(target.position, damage);
-        target.character.health = target.character.health - damage;
+      // (async () => { // ответка, временно закрыл(потом когда нйду что выдаёт ошибку ответку верну)
+      //   await this.gamePlay.showDamage(target.position, damage);
+      //   target.character.health = target.character.health - damage;
 
-        if (target.character.health <= 0) { // если жизни не осталось 
-          const indexCellLifeOver = this.gameState.positionedCharacters.findIndex(positionedCharacter => positionedCharacter.position == target.position);
-          this.gameState.positionedCharacters.splice(indexCellLifeOver, 1); // мертвых убираем с поля
-          this.gamePlay.deselectCell(target.position); // снимаем выделение с ячейки где был активный(от куда ушёл)
+      //   if (target.character.health <= 0) { // если жизни не осталось 
+      //     const indexCellLifeOver = this.gameState.positionedCharacters.findIndex(positionedCharacter => positionedCharacter.position == target.position);
+      //     this.gameState.positionedCharacters.splice(indexCellLifeOver, 1); // мертвых убираем с поля
+      //     this.gamePlay.deselectCell(target.position); // снимаем выделение с ячейки где был активный(от куда ушёл)
 
-          if (target.position == this.gameState.cellWithActiveCharacter) {             // console.log('равенство сработало'); // не стало активного, нужно выборать нового
-            teamPlayer = this.gameState.positionedCharacters.filter(item => ['bowman', 'swordsman', 'magician'].includes(item.character.type));
-            if (teamPlayer.length == 0) {
-              console.log('в команде игрока больше нет ни кого teamPlayer.length == 0');
-              return this.thePlayerLost();
-            }
+      //     if (target.position == this.gameState.cellWithActiveCharacter) {             // console.log('равенство сработало'); // не стало активного, нужно выборать нового
+      //       teamPlayer = this.gameState.positionedCharacters.filter(item => ['bowman', 'swordsman', 'magician'].includes(item.character.type));
+      //       if (teamPlayer.length == 0) {
+      //         console.log('в команде игрока больше нет ни кого teamPlayer.length == 0');
+      //         return this.thePlayerLost();
+      //       };
 
-            let randomIndex = () => Math.floor(Math.random() * (teamPlayer.length)); // генерируем случайный индекс в допустимом диапазоне
-            let randomPlayer = teamPlayer[randomIndex()].position; // случайный персонаж игрока             // console.log(teamPlayer);
-            this.gamePlay.selectCell(randomPlayer, "yellow"); // выделяем игрока - круг желтого цвета.
-            this.gameState.cellWithActiveCharacter = randomPlayer; // ячейка с активным персонажем
-          }
+      //       let randomIndex = () => Math.floor(Math.random() * (teamPlayer.length)); // генерируем случайный индекс в допустимом диапазоне
+      //       let randomPlayer = teamPlayer[randomIndex()].position; // случайный персонаж игрока             // console.log(teamPlayer);
+      //       this.gamePlay.selectCell(randomPlayer, "yellow"); // выделяем игрока - круг желтого цвета.
+      //       this.gameState.cellWithActiveCharacter = randomPlayer; // ячейка с активным персонажем
+      //     }
 
-          setTimeout(() => {
-            this.completingTheComputerAttack();
-          }, 200)
-        }
-        this.gamePlay.redrawPositions(this.gameState.positionedCharacters); // console.log(attacker); // атакующий (или attacker)         // motionPlayer();
-      })();
+      //     setTimeout(() => {
+      //       this.completingTheComputerAttack();
+      //     }, 200)
+      //   }
+      //   this.gamePlay.redrawPositions(this.gameState.positionedCharacters); // console.log(attacker); // атакующий (или attacker)         // motionPlayer();
+      // })();
     } else { // Если атакавать некого - не удалять
+      console.log('Если атаковать некого - не удалять');
       let cellsBusy = this.gameState.positionedCharacters.map(function(item) {
         return item.position;
       });
@@ -344,12 +389,13 @@ export default class GameController {
               if (['bowman', 'swordsman', 'magician'].includes(item.character.type) && this.gameState.cellWithActiveCharacter !== item.position) {
                 for (let i = 0; i < this.gamePlay.cells.length; i++) {
                   this.gamePlay.deselectCell(i);// нужно перебрать все клетки и снять выделение this.gamePlay.cells
-                }
+                };
                 this.gamePlay.selectCell(index, "yellow"); // выделяем игрока - круг желтого цвета.
                 this.gameState.cellWithActiveCharacter = item.position; // ячейка с активным персонажем
-              }  
+              } else 
               // 2. Если мышь кликает: 1-где персонажи игрока и 2-активный есть
-              // else if(['bowman', 'swordsman', 'magician'].includes(item.character.type) && this.gameState.cellWithActiveCharacter === item.position) {} 
+              if(['bowman', 'swordsman', 'magician'].includes(item.character.type) && this.gameState.cellWithActiveCharacter === item.position) {
+              } 
               // 3. Если мышь кликает: 1-где персонажи противника
               else if(['vampire', 'undead', 'daemon'].includes(item.character.type)) { // если противник
                 // 4. Если мышь кликает: 1-где есть красный круг и 2-активный есть
@@ -359,18 +405,26 @@ export default class GameController {
 
                   const damage = Math.max(attacker.attack - target.defence, attacker.attack * 0.1); // 
                   // console.log(damage); // ???
-                  // let teamComputer = this.gameState.positionedCharacters.filter(item => ['vampire', 'undead', 'daemon'].includes(item.character.type));
+                  let teamComputer = this.gameState.positionedCharacters.filter(item => ['vampire', 'undead', 'daemon'].includes(item.character.type));
 
                   (async () => { // атака игрока
+
+                    
+
                     await this.gamePlay.showDamage(index, damage);
 
                     target.health = target.health - damage;
 
+                    
+
                     if (target.health <= 0) {
-                      console.log('Убил -' + target.type);
+                      // console.log('Убил -' + target.type);
                       const indexCellLifeOver = this.gameState.positionedCharacters.findIndex(positionedCharacter => positionedCharacter.position == index)
                       this.gameState.positionedCharacters.splice(indexCellLifeOver, 1);// Кончилась жизнь удалили с поля
                     }
+
+                    // console.log(this.gameState);
+                    
                     this.gamePlay.redrawPositions(this.gameState.positionedCharacters); // console.log(attacker); // атакующий (или attacker)                      // console.log(target); // атакуемый (или target)
                     setTimeout(() => {
                       this.completingThePlayerAttack();
@@ -410,9 +464,9 @@ export default class GameController {
       console.log('this.gameState.cellWithActiveCharacter = null');
       this.motionPlayer();
     }
-    // if (this.gameState.cellWithActiveCharacter !== null && !this.gameState.positionedCharacters.includes(elem => elem.position == this.gameState.cellWithActiveCharacter)) {
-    //   let teamPlayer = this.gameState.positionedCharacters.filter(item => ['bowman', 'swordsman', 'magician'].includes(item.character.type));
-    // }
+    if (this.gameState.cellWithActiveCharacter !== null && !this.gameState.positionedCharacters.includes(elem => elem.position == this.gameState.cellWithActiveCharacter)) {
+      let teamPlayer = this.gameState.positionedCharacters.filter(item => ['bowman', 'swordsman', 'magician'].includes(item.character.type));
+    }
     this.gameState.positionedCharacters.forEach((item) => { // перебираем (войнов + их позиции) 
       if(['vampire', 'undead', 'daemon'].includes(item.character.type)) {        // console.log(item.position);
         this.gamePlay.deselectCell(item.position); //  снимаем выделение с демонов и всякой нечести
@@ -422,7 +476,7 @@ export default class GameController {
       if (this.gamePlay.cells[i].childNodes.length == 0) {
         this.gamePlay.deselectCell(i); //  снимаем выделение со всех ячеек где нет персонажей
       }
-    }
+    };
 
     let cHarInCell = this.gamePlay.cells[index].children[0];
     if (cHarInCell) { // если у элемента есть дочерний элемент
@@ -449,7 +503,7 @@ export default class GameController {
           }
         } else if (['vampire', 'undead', 'daemon'].includes(elem)) { // console.log('противник');
           this.gamePlay.setCursor(cursors.auto);
-        }
+        };
       });
     } else {      // console.log('Наведение - нет дочерних элементов, значит чистое поле');
       this.gamePlay.setCursor(cursors.notallowed); // меняем курсор на notallowed
@@ -464,7 +518,7 @@ export default class GameController {
             this.gamePlay.setCursor(cursors.pointer); // меняем курсор на pointer
           }
         }
-      }
+      };
     }
   }
 

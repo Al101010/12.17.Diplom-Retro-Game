@@ -3,16 +3,14 @@ export default class GameState {
     this.positionedCharacters = [];
     this.courseOfGame = 0;
     this.cellWithActiveCharacter = null;
-    this.level = 0;
+    this.level = 1;
   }
 
+  static from(object) {
+    // TODO: create object
+    return null;
+  }
 
-  // static from(object) {
-  //   // TODO: create object
-  //   return null;
-  // }
-
-  
   saveGameData(data) {
     console.log(data);
     this.saveGame = {      
