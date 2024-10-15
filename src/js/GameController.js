@@ -263,11 +263,25 @@ export default class GameController {
     //   console.log('можно стрелять или колдовать');
     // }
     // console.log(this.gameState.cellWithActiveCharacter);
-    console.log(activ);
+    // ---
+    // console.log(activ);
     // console.log(variantsFarBattle(activ.character.type, this.gameState.cellWithActiveCharacter));
     // console.log(variantsNearBattle(activ.character.type, this.gameState.cellWithActiveCharacter));
 
-    return variantsNearBattle(activ.character.type, this.gameState.cellWithActiveCharacter) // может атаковать ячейки
+    // return variantsNearBattle(activ.character.type, this.gameState.cellWithActiveCharacter) // может атаковать ячейки
+    // ------------------------------------- переделываем
+    let cellPossibleNearAttack = variantsNearBattle(activ.character.type, this.gameState.cellWithActiveCharacter);
+    // console.log(CellPossibleNearAttack);
+    let cellPossibleFarAttack = variantsFarBattle(activ.character.type, this.gameState.cellWithActiveCharacter);
+    // console.log(CellPossibleFarAttack);
+    // console.log(CellPossibleNearAttack.concat(CellPossibleFarAttack));
+
+    if(cellPossibleFarAttack == undefined) {
+      console.log(cellPossibleNearAttack);
+      return cellPossibleNearAttack;
+    }
+    console.log(cellPossibleNearAttack.concat(cellPossibleFarAttack));
+    return cellPossibleNearAttack.concat(cellPossibleFarAttack);
   }
 
   possibleFarAttack() { // возможная дальняя атака
@@ -363,7 +377,7 @@ export default class GameController {
       //   this.gamePlay.redrawPositions(this.gameState.positionedCharacters); // console.log(attacker); // атакующий (или attacker)         // motionPlayer();
       // })();
     } else { // Если атакавать некого - не удалять
-      console.log('Если атаковать некого - не удалять');
+      // console.log('Если атаковать некого - не удалять');
       let cellsBusy = this.gameState.positionedCharacters.map(function(item) {
         return item.position;
       });
