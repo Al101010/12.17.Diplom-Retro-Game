@@ -7,6 +7,7 @@ import GameState from "./GameState";
 // 
 import { variantsToGo } from "./utils";
 import { variantsNearBattle } from "./utils";
+import { variantsFarBattle } from "./utils";
 
 import { characterGenerator } from "./generators"; // попробуем доукомплектовать
 
@@ -257,8 +258,23 @@ export default class GameController {
     //   console.log(activ);
     //    return console.log('функция this.active() выдаёт - '); // + this.active())
     // }
+
+    // ------------------------------------- if(variantsFarBattle(activ.character.type, this.gameState.cellWithActiveCharacter).includes(index)) {
+    //   console.log('можно стрелять или колдовать');
+    // }
+    // console.log(this.gameState.cellWithActiveCharacter);
+    console.log(activ);
+    // console.log(variantsFarBattle(activ.character.type, this.gameState.cellWithActiveCharacter));
+    // console.log(variantsNearBattle(activ.character.type, this.gameState.cellWithActiveCharacter));
+
     return variantsNearBattle(activ.character.type, this.gameState.cellWithActiveCharacter) // может атаковать ячейки
   }
+
+  possibleFarAttack() { // возможная дальняя атака
+    let activ = this.gameState.positionedCharacters.find((elem) => elem.position === this.gameState.cellWithActiveCharacter);
+    return variantsFarBattle(activ.character.type, this.gameState.cellWithActiveCharacter) // может атаковать ячейки
+  }
+
 
   completingThePlayerAttack() { // завершение атаки игрока после тайм-аута    // console.log('completingThePlayerAttack() - завершение атаки игрока после тайм-аута') // ?????
     // console.log(this.gameState);
@@ -398,38 +414,41 @@ export default class GameController {
               } 
               // 3. Если мышь кликает: 1-где персонажи противника
               else if(['vampire', 'undead', 'daemon'].includes(item.character.type)) { // если противник
+
+
+
                 // 4. Если мышь кликает: 1-где есть красный круг и 2-активный есть
                 if (this.gameState.cellWithActiveCharacter !== null && this.gamePlay.cells[index].classList.contains("selected-red")) { // console.log('Атака');
                   let attacker = this.gameState.positionedCharacters.filter(item => item.position === this.gameState.cellWithActiveCharacter)[0].character; // атакующий (или attacker)
                   let target = this.gameState.positionedCharacters.filter(item => item.position === index)[0].character; // атакуемый (или target)
 
-                  const damage = Math.max(attacker.attack - target.defence, attacker.attack * 0.1); // 
-                  // console.log(damage); // ???
-                  let teamComputer = this.gameState.positionedCharacters.filter(item => ['vampire', 'undead', 'daemon'].includes(item.character.type));
+                  const damage = Math.max(attacker.attack - target.defence, attacker.attack * 0.1); //                   // console.log(damage); // ???
+
+                  // let teamComputer = this.gameState.positionedCharacters.filter(item => ['vampire', 'undead', 'daemon'].includes(item.character.type));
+                  // console.log(teamComputer);
+
+                  // if  // если дальний бой
+                  // if  // если ближний бой
 
                   (async () => { // атака игрока
-
-                    
 
                     await this.gamePlay.showDamage(index, damage);
 
                     target.health = target.health - damage;
-
-                    
-
-                    if (target.health <= 0) {
-                      // console.log('Убил -' + target.type);
+ 
+                    if (target.health <= 0) { // console.log('Убил -' + target.type);
                       const indexCellLifeOver = this.gameState.positionedCharacters.findIndex(positionedCharacter => positionedCharacter.position == index)
                       this.gameState.positionedCharacters.splice(indexCellLifeOver, 1);// Кончилась жизнь удалили с поля
-                    }
-
-                    // console.log(this.gameState);
+                    } // console.log(this.gameState);
                     
                     this.gamePlay.redrawPositions(this.gameState.positionedCharacters); // console.log(attacker); // атакующий (или attacker)                      // console.log(target); // атакуемый (или target)
                     setTimeout(() => {
                       this.completingThePlayerAttack();
                     }, 200)
                   })();
+
+
+
                 } else if (this.gameState.cellWithActiveCharacter !== null && !this.gamePlay.cells[index].classList.contains("selected-red")) {
                   GamePlay.showError('персонаж противника'); // ???
                 }
@@ -498,6 +517,9 @@ export default class GameController {
           if (this.possibleAttack().includes(index)) {            // console.log('может атаковать'); // ----------------------------------------------------------------------------
             this.gamePlay.setCursor(cursors.crosshair);
             this.gamePlay.selectCell(index, "red"); // выделяем ячейку -  красным  - прерывистым кругом
+
+            // console.log(index);
+
           } else {
             this.gamePlay.setCursor(cursors.auto);
           }

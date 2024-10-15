@@ -575,3 +575,270 @@ export function variantsNearBattle(type, index) {
     }
   };
 }
+
+
+export function variantsFarBattle(type, index) {
+  if (type === 'bowman' || type === 'vampire') {
+    if (index === 0) {
+      return [2, 18, 16]
+    } else if (index === 1) {
+      return [3, 19, 17]
+    } else if (index === 2) {
+      return [4, 20, 18, 16, 0]
+    } else if (index === 3) {
+      return [5, 21, 19, 17, 1]
+    } else if (index === 4) {
+      return [6, 22, 20, 18, 2]
+    } else if (index === 5) {
+      return [7, 23, 21, 19, 3]
+    } else if (index === 6) {
+      return [22, 20, 4]
+    } else if (index === 7) {
+      return [23, 21, 5]
+    } else if (index === 8) {
+      return [10, 26, 24]
+    } else if (index === 9) {
+      return [11, 27, 25,]
+    } else if (index === 10) {
+      return [12, 28, 26, 24, 8]
+    } else if (index === 11) {
+      return [13, 29, 27, 25, 9]
+    } else if (index === 12) {
+      return [14, 30, 28, 26, 10]
+    } else if (index === 13) {
+      return [15, 31, 29, 27, 11]
+    } else if (index === 14) {
+      return [30, 29, 12]
+    } else if (index === 15) {
+      return [31, 29, 13]
+    } else if (index === 16) {
+      return [0, 2, 18, 34, 32]
+    } else if (index === 17) {
+      return [1, 3, 19, 35, 33]
+    } else if (index === 18) {
+      return [2, 4, 20, 36, 34, 32, 16, 0]
+    } else if (index === 19) {
+      return [3, 5, 21, 37, 35, 33, 17, 1]
+    } else if (index === 20) {
+      return [4, 6, 22, 38, 38, 34, 18, 2]
+    } else if (index === 21) {
+      return [5, 7, 23, 39, 37, 35, 19, 3]
+    } else if (index === 22) {
+      return [6, 38, 36, 20, 4]
+    } else if (index ===23) {
+      return [7, 39, 37, 21, 5]
+    } else if (index === 24) {
+      return [8, 10, 26, 42, 40]
+    } else if (index === 25) {
+      return [9, 11, 27, 43, 41, ]
+    } else if (index === 26) {
+      return [10, 12, 28, 44, 42, 40, 24, 8]
+    } else if (index === 27) {
+      return [11, 13, 29, 45, 43, 41, 25, 9]
+    } else if (index === 28) {
+      return [12, 14, 30, 46, 44, 42, 26, 10]
+    } else if (index === 29) {
+      return [13, 15, 31, 47, 45, 43, 27, 11]
+    } else if (index === 30) {
+      return [14, 46, 44, 28, 12]
+    } else if (index === 31) {
+      return [15, 47, 45, 29, 13]
+    } else if (index ===32) {
+      return [16, 18, 34, 50, 48]
+    } else if (index === 33) {
+      return [17, 19, 35, 51, 49]
+    } else if (index === 34) {
+      return [18, 20, 36, 52, 50, 48, 32, 16]
+    } else if (index === 35) {
+      return [19, 21, 37, 53, 51, 49, 33, 17]
+    } else if (index === 36) {
+      return [20, 22, 38, 54, 52, 50, 34, 18]
+    } else if (index === 37) {
+      return [21, 23, 39, 55, 53, 51, 35, 19]
+    } else if (index === 38) {
+      return [22, 54, 52, 36, 20]
+    } else if (index === 39) {
+      return [23, 55, 53, 37, 21]
+    } else if (index === 40) {
+      return [24, 26, 42, 58, 56]
+    } else if (index === 41) {
+      return [25, 27, 43, 59, 57]
+    } else if (index === 42) {
+      return [26, 28, 44, 60, 58, 56, 40, 24]
+    } else if (index === 43) {
+      return [27, 29, 45, 61, 59, 57, 41, 25]
+    } else if (index === 44) {
+      return [28, 30, 46, 62, 60, 58, 42, 26]
+    } else if (index === 45) {
+      return [29, 31, 47, 63, 61, 59, 43, 27]
+    } else if (index === 46) {
+      return [30, 62, 60, 44, 28]
+    } else if (index === 47) {
+      return [31, 63, 61, 45, 29]
+    } else if (index === 48) {
+      return [32, 34, 50]
+    } else if (index === 49) {
+      return [33, 35, 51]
+    } else if (index === 50) {
+      return [34, 36, 52, 48, 32]
+    } else if (index === 51) {
+      return [35, 37, 53, 49, 33]
+    } else if (index === 52) {
+      return [36, 38, 54, 50, 34]
+    } else if (index === 53) {
+      return [37, 39, 55, 51, 35]
+    } else if (index === 54) {
+      return [38, 52, 36]
+    } else if (index === 55) {
+      return [39, 53, 37]
+    } else if (index === 56) {
+      return [40, 42, 58]
+    } else if (index === 57) {
+      return [41, 43, 59]
+    } else if (index === 58) {
+      return [42, 44, 60, 56, 40]
+    } else if (index === 59) {
+      return [43, 45, 61, 57, 41]
+    } else if (index === 60) {
+      return [44, 46, 62, 58, 42]
+    } else if (index === 61) {
+      return [45, 47, 63, 59, 43]
+    } else if (index === 62) {
+      return [46, 60, 44]
+    } else if (index === 63) {
+      return [47, 61, 45]
+    }
+  }
+
+  if (type === 'magician' || type === 'daemon') {
+    if (index === 0) {
+      return [2, 3, 4, 18, 27, 36, 16, 24, 32]
+    } else if (index === 1) {
+      return [3, 4, 5, 19, 28, 37, 17, 25, 33]
+    } else if (index === 2) {
+      return [4, 5, 6, 20, 29, 38, 18, 26, 34, 16, 0]
+    } else if (index === 3) {
+      return [5, 6, 7, 21, 30, 39, 19, 27, 35, 17, 24, 1, 0]
+    } else if (index === 4) {
+      return [6, 7, 22, 31, 20, 28, 36, 18, 25, 32, 2, 1, 0]
+    } else if (index === 5) {
+      return [7, 23, 21, 29, 37, 19, 26, 33, 3, 2, 1]
+    } else if (index === 6) {
+      return [22, 30, 38, 20, 27, 34, 4, 3, 2]
+    } else if (index === 7) {
+      return [23, 31, 39, 21, 28, 35, 5, 4, 3]
+    } else if (index === 8) {
+      return [10, 11, 12, 26, 35, 44, 24, 32, 40]
+    } else if (index === 9) {
+      return [11, 12, 13, 27, 36, 45, 25, 33, 41]
+    } else if (index === 10) {
+      return [12, 13, 14, 28, 37, 46, 26, 34, 42, 24, 8]
+    } else if (index === 11) {
+      return [13, 14, 15, 29, 38, 47, 27, 35, 43, 25, 32, 9, 8]
+    } else if (index === 12) {
+      return [14, 15, 30, 39, 28, 36, 44, 26, 33, 40, 10, 9, 8]
+    } else if (index === 13) {
+      return [15, 31, 29, 37, 45, 27, 34, 41, 11, 10, 9]
+    } else if (index === 14) {
+      return [30, 38, 46, 28, 35, 42, 12, 11, 10]
+    } else if (index === 15) {
+      return [31, 39, 47, 29, 36, 43, 13, 12, 11]
+    } else if (index === 16) {
+      return [0, 2, 18, 19, 20, 34, 43, 52, 32, 40, 48]
+    } else if (index === 17) {
+      return [1, 3, 19, 20, 21, 35, 44, 53, 33, 41, 49]
+    } else if (index === 18) {
+      return [2, 4, 20, 21, 22, 36, 45, 54, 34, 42, 50, 32, 16, 0]
+    } else if (index === 19) {
+      return [3, 5, 21, 22, 23, 37, 46, 55, 35, 43, 51, 33, 40, 17, 16, 1]
+    } else if (index === 20) {
+      return [4, 6, 22, 23, 38, 47, 36, 44, 52, 34, 41, 48, 18, 17, 16, 2]
+    } else if (index === 21) {
+      return [5, 7, 23, 39, 37, 45, 53, 35, 42, 49, 19, 18, 17, 3]
+    } else if (index === 22) {
+      return [6, 28, 46, 54, 36, 43, 50, 20, 19, 18, 4]
+    } else if (index ===23) {
+      return [7, 39, 47, 55, 37, 44, 51, 21, 20, 19, 5]
+    } else if (index === 24) {
+      return [8, 0, 10, 3, 26, 27, 28, 42, 51, 60, 40, 48, 56]
+    } else if (index === 25) {
+      return [9, 1, 11, 4, 27, 28, 29, 43, 52, 61, 41, 49, 57]
+    } else if (index === 26) {
+      return [10, 2, 12, 5, 28, 29, 30, 44, 53, 62, 42, 50, 58, 40, 24, 8]
+    } else if (index === 27) {
+      return [11, 3, 13, 6, 29, 30, 31, 45, 54, 63, 43, 51, 59, 41, 48, 25, 24, 9, 0]
+    } else if (index === 28) {
+      return [12, 4, 14, 7, 30, 31, 46, 55, 44, 52, 60, 42, 49, 56, 26, 25, 24, 10, 1]
+    } else if (index === 29) {
+      return [13, 5, 15, 31, 47, 45, 53, 61, 43, 50, 57, 27, 26, 25, 11, 2]
+    } else if (index === 30) {
+      return [14, 6, 46, 54, 62, 44, 51, 58, 28, 27, 26, 12, 3]
+    } else if (index === 31) {
+      return [15, 7, 47, 55, 63, 45, 52, 59, 29, 28, 27, 13, 4]
+    } else if (index ===32) {
+      return [16, 8, 0, 18, 11, 4, 34, 35, 36, 50, 59, 48, 56]
+    } else if (index === 33) {
+      return [17, 9, 1, 19, 12, 5, 35, 36, 37, 51, 60, 49, 57]
+    } else if (index === 34) {
+      return [18, 10, 2, 20, 13, 6, 36, 37, 38, 52, 61, 50, 58, 48, 32, 16]
+    } else if (index === 35) {
+      return [19, 11, 3, 21, 14, 7, 37, 38, 39, 53, 62, 51, 59, 49, 56, 33, 32, 17, 8]
+    } else if (index === 36) {
+      return [20, 12, 4, 22, 15, 38, 39, 54, 63, 52, 60, 50, 57, 34, 33, 32, 18, 9, 0]
+    } else if (index === 37) {
+      return [21, 13, 5, 23, 39, 55, 53, 61, 51, 58, 35, 34, 33, 19, 10, 1]
+    } else if (index === 38) {
+      return [22, 14, 6, 54, 62, 52, 59, 36, 35, 34, 20, 11, 2]
+    } else if (index === 39) {
+      return [23, 15, 7, 55, 63, 53, 60, 37, 36, 35, 21, 12, 3]
+    } else if (index === 40) {
+      return [24, 16, 8, 26, 19, 12, 42, 43, 44, 58, 56]
+    } else if (index === 41) {
+      return [25, 17, 9, 27, 20, 13, 43, 44, 45, 59, 57]
+    } else if (index === 42) {
+      return [26, 18, 10, 28, 21, 14, 44, 45, 46, 60, 58, 56, 40, 24]
+    } else if (index === 43) {
+      return [27, 19, 11, 29, 22, 15, 45, 46, 47, 61, 59, 57, 41, 40, 25, 16]
+    } else if (index === 44) {
+      return [28, 20, 12, 30, 23, 46, 47, 62, 60, 58, 42, 41, 40, 26, 17, 8]
+    } else if (index === 45) {
+      return [29, 21, 13, 31, 47, 63, 61, 59, 43, 42, 41, 27, 18, 9]
+    } else if (index === 46) {
+      return [30, 22, 14, 62, 60, 44, 43, 42, 28, 19, 10]
+    } else if (index === 47) {
+      return [31, 23, 15, 63, 61, 45, 44, 43, 29, 20, 11]
+    } else if (index === 48) {
+      return [32, 24, 16, 34, 27, 20, 50, 51, 52]
+    } else if (index === 49) {
+      return [33, 25, 17, 35, 28, 21, 51, 52, 53]
+    } else if (index === 50) {
+      return [34, 26, 18, 36, 29, 22, 52, 53, 54, 48, 32]
+    } else if (index === 51) {
+      return [35, 27, 19, 37, 30, 23, 53, 54, 55, 49, 48, 33, 24]
+    } else if (index === 52) {
+      return [36, 28, 20, 38, 31, 54, 55, 50, 49, 48, 34, 25, 16]
+    } else if (index === 53) {
+      return [37, 29, 21, 39, 55, 51, 50, 49, 35, 26, 17]
+    } else if (index === 54) {
+      return [38, 30, 22, 52, 51, 50, 36, 27, 18]
+    } else if (index === 55) {
+      return [39, 31, 23, 53, 52, 51, 37, 28, 19]
+    } else if (index === 56) {
+      return [40, 32, 24, 42, 35, 28, 58, 59, 60]
+    } else if (index === 57) {
+      return [41, 33, 25, 43, 36, 29, 59, 60, 61]
+    } else if (index === 58) {
+      return [42, 34, 26, 44, 37, 30, 60, 61, 62, 56, 40]
+    } else if (index === 59) {
+      return [43, 35, 27, 45, 38, 31, 61, 62, 63, 57, 56, 41, 32]
+    } else if (index === 60) {
+      return [44, 36, 28, 46, 39, 62, 63, 58, 57, 56, 42, 33, 24]
+    } else if (index === 61) {
+      return [45, 37, 29, 47, 63, 59, 58, 57, 43, 34, 25]
+    } else if (index === 62) {
+      return [46, 38, 30, 60, 59, 58, 44, 35, 26]
+    } else if (index === 63) {
+      return [47, 39, 31, 61, 60, 59, 45, 36, 27]
+    }
+  }
+}
