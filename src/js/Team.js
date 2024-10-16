@@ -63,3 +63,47 @@ export class Team2 {
     this.charactersComputer = generateTeam(this.#typesOfComputerCharacters, 2, 3);
   }
 }
+
+export class Team3 {
+  // TODO: write your logic here
+  // constructor(team) {
+  constructor() {
+    console.log('Team3')
+    this.charactersPlayers = [];
+    this.startOfPlayersTeam();
+    this.charactersComputer = [];
+    this.startOfComputerTeam();
+    this.characters = []; // расположение
+  }
+  
+  #typesOfPlayersCharacters = [Bowman, Swordsman, Magician];
+  startOfPlayersTeam() {
+    this.charactersPlayers = generateTeam(this.#typesOfPlayersCharacters, 2, 4);
+  }
+  #typesOfComputerCharacters = [Vampire, Undead, Daemon];
+  startOfComputerTeam() {
+    this.charactersComputer = generateTeam(this.#typesOfComputerCharacters, 2, 4);
+  }
+}
+
+export class Team4 {
+  // TODO: write your logic here
+  // constructor(team) {
+  constructor() {
+    console.log('Team4')
+    this.charactersPlayers = [];
+    this.startOfPlayersTeam();
+    this.charactersComputer = [];
+    this.startOfComputerTeam();
+    this.characters = []; // расположение
+  }
+  
+  #typesOfPlayersCharacters = [Bowman, Swordsman, Magician];
+  startOfPlayersTeam() {
+    this.charactersPlayers = generateTeam(this.#typesOfPlayersCharacters, 2, 5);
+  }
+  #typesOfComputerCharacters = [Vampire, Undead, Daemon];
+  startOfComputerTeam() {
+    this.charactersComputer = generateTeam(this.#typesOfComputerCharacters, 2, 5);
+  }
+}

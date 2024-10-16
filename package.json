@@ -15,7 +15,7 @@
     "preshow:dist": "npm run build",
     "show:dist": "live-server dist"
   },
-  "author": "Rysaev Damir <freepad@ya.ru>",
+  "author": "Al",
   "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.23.0",
