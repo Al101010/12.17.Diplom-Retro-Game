@@ -46,7 +46,7 @@ export class Team2 {
   // TODO: write your logic here
   // constructor(team) {
   constructor() {
-    console.log('Team2')
+    // console.log('Team2')
     this.charactersPlayers = [];
     this.startOfPlayersTeam();
     this.charactersComputer = [];
