@@ -1,8 +1,8 @@
 import PositionedCharacter from "./PositionedCharacter";
 import Team from "./Team";
 import { Team2 } from "./Team";
-// import { Team3 } from "./Team";
-// import { Team4 } from "./Team";
+import { Team3 } from "./Team";
+import { Team4 } from "./Team";
 
 import GamePlay from "./GamePlay";
 import cursors from "./cursors";
@@ -59,9 +59,8 @@ export default class GameController {
   beginningGame() { // Начало игры
     // Игрок
     const team = new Team();
-    // const arrPositionPlayers = [0, 1, 8, 9, 16, 17, 24, 25, 32, 33, 40, 41, 48, 49, 56, 57];
-    const arrPositionPlayers = [0, 1, 8, 9, 16, 17, 24, 25, 32, 33, 40, 41, 48, 49]; // , 56 , 57 - убрал из массива для добавления
-
+    const arrPositionPlayers = [0, 1, 8, 9, 16, 17, 24, 25, 32, 33, 40, 41, 48, 49, 56, 57];
+    
     function randomPositionPlayers() {
       const randomPosition = arrPositionPlayers[Math.floor(Math.random() * arrPositionPlayers.length)];// Math.floor(Math.random() * 16 - случайное число от 0 до 15
       arrPositionPlayers.splice(arrPositionPlayers.indexOf(randomPosition), 1); // удаляем номер ячейки который уже использовали
@@ -110,7 +109,7 @@ export default class GameController {
   }
 
   nextLevel() {
-    const arrPositionPlayers = [0, 1, 8, 9, 16, 17, 24, 25, 32, 33, 40, 41, 48, 49, 56, 57]; // наверно нужно часть удалить для вставки
+    const arrPositionPlayers = [0, 1, 8, 9, 16, 17, 24, 25, 32, 33, 40, 41]; // , 48 , 49 , 56 , 57 - убрал из массива для добавления
 
     function randomPositionPlayers() {
       const randomPosition = arrPositionPlayers[Math.floor(Math.random() * arrPositionPlayers.length)];// Math.floor(Math.random() * 16 - случайное число от 0 до 15
@@ -136,21 +135,9 @@ export default class GameController {
       console.log('перешли на 4 уровень, это последний');
       this.gameState.level++; // Повышаем уровень игры
       console.log(this.gameState);
-      // ------------- если с 3 на 4 уровень переход - конец ---------------------------------------------------
-
-    } else if (this.gameState.level === 2) {
-      console.log('перешли на 3 уровень');
-      this.gameState.level++; // Повышаем уровень игры
-      console.log(this.gameState);
-      // ------------- если с 2 на 3 уровень переход - конец ---------------------------------------------------
-
-    } else if (this.gameState.level === 1) {// Это если переход c 1-го уровеня на 2-й
-      this.gameState.level++; // Повышаем уровень игры
-      console.log('перешли на 2 уровень');       // нужно до укомплекторать команды - уровень 2
-      const team2 = new Team2();
+      const team4 = new Team4();
       
       let teamPlayer = this.gameState.positionedCharacters.filter(item => ['bowman', 'swordsman', 'magician'].includes(item.character.type));
-      // const arrPositionPlayers = [0, 1, 8, 9, 16, 17, 24, 25, 32, 33, 40, 41, 48, 49, 56]; //, 57 - убрал из массива для добавления
 
       this.gameState.positionedCharacters.forEach(positionedCharacter => {
         positionedCharacter.position = randomPositionPlayers();
@@ -165,10 +152,218 @@ export default class GameController {
         positionedCharacter.character.attack = positionedCharacter.character.attack + 5;
         positionedCharacter.character.defence = positionedCharacter.character.defence + 5;
       });
-      // ---------------------------------------------------------------------------- добавляем
-      console.log('---------------------------------------------------------------------------- добавляем - начало');
-      if (teamPlayer.length == 2) {
-        console.log('осталось два война');        // console.log(teamPlayer);        // console.log('team2');        // console.log(team2);
+      // ----------------------------------------------------------------------------4 добавляем-начало
+      let moreIndex = [48, 49, 56, 57];
+      if (teamPlayer.length == 1) {
+        for (let i = 0; i == 3; i++) {
+          let elem = team4.charactersPlayers[i];
+          let positionedElem = [];
+          positionedElem.push(
+            new PositionedCharacter(
+              elem,
+              moreIndex[i]
+            )
+          );
+          positionedElem.forEach(elem => {
+            this.gameState.positionedCharacters.push(elem);
+          })
+        }
+      } else if (teamPlayer.length == 2) {
+        for (let i = 0; i == 2; i++) {
+          let elem = team4.charactersPlayers[i];
+          let positionedElem = [];
+          positionedElem.push(
+            new PositionedCharacter(
+              elem,
+              moreIndex[i]
+            )
+          );
+          positionedElem.forEach(elem => {
+            this.gameState.positionedCharacters.push(elem);
+          })
+        }
+      } else if (teamPlayer.length == 3) {
+        for (let i = 0; i == 1; i++) {
+          let elem = team4.charactersPlayers[i];
+          let positionedElem = [];
+          positionedElem.push(
+            new PositionedCharacter(
+              elem,
+              moreIndex[i]
+            )
+          );
+          positionedElem.forEach(elem => {
+            this.gameState.positionedCharacters.push(elem);
+          })
+        }
+      } else if (teamPlayer.length == 4) {
+        
+        let elem = team4.charactersPlayers[0];
+        let positionedElem = [];
+        positionedElem.push(
+          new PositionedCharacter(
+            elem,
+            moreIndex[3]
+          )
+        );
+        positionedElem.forEach(elem => {
+          this.gameState.positionedCharacters.push(elem);
+        })
+      }
+      
+      console.log(this.gameState);
+      // ----------------------------------------------------------------------------4 добавляем-конец
+
+      // Теперь компьютер ---------------------------------------------------------------------------
+      const positionedCharacterComputer = [];
+
+      team3.charactersComputer.forEach((item, index) => {
+        positionedCharacterComputer.push(
+          new PositionedCharacter(
+            item,
+            index = randomPositionComputer(), // выдаёт ошибку что неиспользуется поэтому добавил console.log(index), и без неё нехочет.
+            console.log(index)
+          )
+        )
+      });
+
+      positionedCharacterComputer.forEach(positionedCharacter => {
+        // positionedCharacter.character.level++; // здесь наверно нужно поставить точно какой(например: = 3)
+        positionedCharacter.character.health = 50;
+        positionedCharacter.character.attack = positionedCharacter.character.attack + 5; // ?
+        positionedCharacter.character.defence = positionedCharacter.character.defence + 5; // ?
+      });
+
+      positionedCharacterComputer.forEach(elem => { // добавили новых противников
+        this.gameState.positionedCharacters.push(elem);
+      })
+
+      this.gamePlay.drawUi('mountain'); // Игровое поле на 4 уровне - mountain
+      this.gamePlay.redrawPositions(this.gameState.positionedCharacters); // Раставили всех участников(войнов)
+      this.gameState.cellWithActiveCharacter = null;
+
+      this.motionPlayer(); // Движение игрока, выбираем случайного и делаем активным
+      // ------------- если с 3 на 4 уровень переход - конец ---------------------------------------------------
+
+    } else if (this.gameState.level === 2) {
+      console.log('перешли на 3 уровень');
+      this.gameState.level++; // Повышаем уровень игры
+      const team3 = new Team3();
+      
+      let teamPlayer = this.gameState.positionedCharacters.filter(item => ['bowman', 'swordsman', 'magician'].includes(item.character.type));
+
+      this.gameState.positionedCharacters.forEach(positionedCharacter => {
+        positionedCharacter.position = randomPositionPlayers();
+      });  // придумываем случайную позицию каждому
+
+      this.gameState.positionedCharacters.forEach(positionedCharacter => {
+        positionedCharacter.character.level++;
+        positionedCharacter.character.health = positionedCharacter.character.health + 80;
+        if (positionedCharacter.character.health > 100) {
+          positionedCharacter.character.health = 100;
+        }
+        positionedCharacter.character.attack = positionedCharacter.character.attack + 5;
+        positionedCharacter.character.defence = positionedCharacter.character.defence + 5;
+      });
+      // ----------------------------------------------------------------------------3 добавляем-начало
+      let moreIndex = [48, 49, 56, 57];
+      if (teamPlayer.length == 1) {
+        for (let i = 0; i == 2; i++) {
+          let elem = team3.charactersPlayers[i];
+          let positionedElem = [];
+          positionedElem.push(
+            new PositionedCharacter(
+              elem,
+              moreIndex[i]
+            )
+          );
+          positionedElem.forEach(elem => {
+            this.gameState.positionedCharacters.push(elem);
+          })
+        }
+      } else if (teamPlayer.length == 2) {
+        for (let i = 0; i == 1; i++) {
+          let elem = team3.charactersPlayers[i];
+          let positionedElem = [];
+          positionedElem.push(
+            new PositionedCharacter(
+              elem,
+              moreIndex[i]
+            )
+          );
+          positionedElem.forEach(elem => {
+            this.gameState.positionedCharacters.push(elem);
+          })
+        }
+      } else if (teamPlayer.length == 3) {
+        
+        let elem = team3.charactersPlayers[0];
+        let positionedElem = [];
+        positionedElem.push(
+          new PositionedCharacter(
+            elem,
+            57
+          )
+        );
+        positionedElem.forEach(elem => {
+          this.gameState.positionedCharacters.push(elem);
+        })
+      }
+      
+      console.log(this.gameState);
+      // ----------------------------------------------------------------------------3 добавляем-конец
+
+      // Теперь компьютер ---------------------------------------------------------------------------
+      const positionedCharacterComputer = [];
+
+      team3.charactersComputer.forEach((item, index) => {
+        positionedCharacterComputer.push(
+          new PositionedCharacter(
+            item,
+            index = randomPositionComputer(), // выдаёт ошибку что неиспользуется поэтому добавил console.log(index), и без неё нехочет.
+            console.log(index)
+          )
+        )
+      });
+
+      positionedCharacterComputer.forEach(positionedCharacter => {
+        // positionedCharacter.character.level++; // здесь наверно нужно поставить точно какой(например: = 3)
+        positionedCharacter.character.health = 50;
+        positionedCharacter.character.attack = positionedCharacter.character.attack + 5; // ?
+        positionedCharacter.character.defence = positionedCharacter.character.defence + 5; // ?
+      });
+
+      positionedCharacterComputer.forEach(elem => { // добавили новых противников
+        this.gameState.positionedCharacters.push(elem);
+      })
+
+      this.gamePlay.drawUi('arctic'); // Игровое поле на третий - arctic, 4 - mountain
+      this.gamePlay.redrawPositions(this.gameState.positionedCharacters); // Раставили всех участников(войнов)
+      this.gameState.cellWithActiveCharacter = null;
+
+      this.motionPlayer(); // Движение игрока, выбираем случайного и делаем активным
+      // ------------- если с 2 на 3 уровень переход - конец ---------------------------------------------------
+    } else if (this.gameState.level === 1) {// Это если переход c 1-го уровеня на 2-й
+      this.gameState.level++; // Повышаем уровень игры
+      console.log('перешли на 2 уровень');       // нужно до укомплекторать команды - уровень 2
+      const team2 = new Team2();
+      
+      let teamPlayer = this.gameState.positionedCharacters.filter(item => ['bowman', 'swordsman', 'magician'].includes(item.character.type));
+
+      this.gameState.positionedCharacters.forEach(positionedCharacter => {
+        positionedCharacter.position = randomPositionPlayers();
+      });  // придумываем случайную позицию каждому
+
+      this.gameState.positionedCharacters.forEach(positionedCharacter => {
+        positionedCharacter.character.level++;
+        positionedCharacter.character.health = positionedCharacter.character.health + 80;
+        if (positionedCharacter.character.health > 100) {
+          positionedCharacter.character.health = 100;
+        }
+        positionedCharacter.character.attack = positionedCharacter.character.attack + 5;
+        positionedCharacter.character.defence = positionedCharacter.character.defence + 5;
+      });
+      // ----------------------------------------------------------------------------2 добавляем-начало
         if (team2.charactersPlayers.find(elem => elem.type == 'magician')) {          // console.log('хотим добавить magician');
           let elem = team2.charactersPlayers.find(elem => elem.type == 'magician');          // console.log(elem);
 
@@ -179,15 +374,17 @@ export default class GameController {
               57
             )
           );
-          console.log(positionedElem);
+          // console.log(positionedElem);
           positionedElem.forEach(elem => {
             this.gameState.positionedCharacters.push(elem);
           })
-          console.log(this.gameState);
-        } else {
-          console.log('нет magician добовляем любого (первого попавшегося)');
-
+          console.log('добавили    magician   на второй уровень');
+        } else {          // console.log('нет magician добовляем любого (первого попавшегося)'); // health = 50
           let elem;
+          for (let i = 0; i < team2.charactersPlayers.length; i++) { // берём первого попавшегося
+            elem = team2.charactersPlayers[0];
+          }
+
           let positionedElem = [];
           positionedElem.push(
             new PositionedCharacter(
@@ -195,24 +392,45 @@ export default class GameController {
               57
             )
           );
-          // console.log(team2.charactersPlayers);
-          for (let i = 0; i < team2.charactersPlayers.length; i++) {
-            console.log(team2.charactersPlayers[i]);
-            elem = team2.charactersPlayers[i];
-            return;
-          }
+          
           positionedElem.forEach(elem => {
             this.gameState.positionedCharacters.push(elem);
-          })
-          console.log(this.gameState);          // console.log(elem);
+          })          
+          console.log('добавили    одного любого    на второй уровень');
         }
+      
+        
+        teamPlayer = this.gameState.positionedCharacters.filter(item => ['bowman', 'swordsman', 'magician'].includes(item.character.type));
+        console.log(teamPlayer.length); // -------------------------------- !!!
+
+      
+        if (teamPlayer.length == 2) {
+        console.log('одного добавили и свёравно осталось два война, добовляем ещё');
+        // console.log(teamPlayer);        // console.log('team2');        // console.log(team2);
+        let elem;
+          for (let i = 0; i < team2.charactersPlayers.length; i++) { // берём первого попавшегося
+            elem = team2.charactersPlayers[1];
+          }
+
+          let positionedElem = [];
+          positionedElem.push(
+            new PositionedCharacter(
+              elem,
+              49
+            )
+          );
+          
+          positionedElem.forEach(elem => {
+            this.gameState.positionedCharacters.push(elem);
+          })          
+          
+          console.log('добавили ещё два на второй уровень');
       }
-      console.log('---------------------------------------------------------------------------- добавляем - конец');
-      // ---------------------------------------------------------------------------- добавляем
 
-      // Теперь компьютер -----------------------------------------------------------------------------
+
+      // ----------------------------------------------------------------------------2 добавляем-конец
+      // Теперь компьютер ---------------------------------------------------------------------------
       const positionedCharacterComputer = [];
-
 
       team2.charactersComputer.forEach((item, index) => {
         positionedCharacterComputer.push(
@@ -235,7 +453,7 @@ export default class GameController {
         this.gameState.positionedCharacters.push(elem);
       })
 
-      this.gamePlay.drawUi('desert'); // Игровое поле desert - 2 уровень
+      this.gamePlay.drawUi('desert'); // Игровое поле desert - 2 уровень, на третий - arctic, 4 - mountain
       this.gamePlay.redrawPositions(this.gameState.positionedCharacters); // Раставили всех участников(войнов)
 
 

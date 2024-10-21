@@ -16,7 +16,7 @@ gameCtrl.init();
 
 // don't write your code here
 
-// console.log(gameCtrl.gameState);
+console.log(gameCtrl.gameState);
 
 // console.log(this);// пусто
 // import themes from "./themes";
