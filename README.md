@@ -600,4 +600,6 @@ git clone https://github.com/Al101010/12.17.Diplom-Retro-Game.git
 3. Ответка противника.
 
 4. Сохранение и загрузка сохранённой игры.
+    в GameState.js есть функция saveGameData(), а в GameController.js есть функция saveGame().
+    в поисковой строке: js как сохранить игру localStorage JSON.parse
 ---------------------------------------------------------------------------------------------

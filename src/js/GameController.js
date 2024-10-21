@@ -48,7 +48,8 @@ export default class GameController {
   
   saveGame() {
     this.gameState.saveGameData(this);
-    // console.log(this);
+    console.log('saveGame()');
+    console.log(this);
   }
   
   loadGame() {
@@ -378,7 +379,7 @@ export default class GameController {
           positionedElem.forEach(elem => {
             this.gameState.positionedCharacters.push(elem);
           })
-          console.log('добавили    magician   на второй уровень');
+          // console.log('добавили    magician   на второй уровень');
         } else {          // console.log('нет magician добовляем любого (первого попавшегося)'); // health = 50
           let elem;
           for (let i = 0; i < team2.charactersPlayers.length; i++) { // берём первого попавшегося
@@ -396,7 +397,7 @@ export default class GameController {
           positionedElem.forEach(elem => {
             this.gameState.positionedCharacters.push(elem);
           })          
-          console.log('добавили    одного любого    на второй уровень');
+          // console.log('добавили    одного любого    на второй уровень');
         }
       
         
