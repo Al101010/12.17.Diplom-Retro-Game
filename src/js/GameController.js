@@ -75,7 +75,7 @@ export default class GameController {
         new PositionedCharacter(
           item,
           index = randomPositionPlayers(), // выдаёт ошибку что неиспользуется поэтому добавил console.log(index), и без неё нехочет.
-          console.log(index)
+          console.log(index) // без этой строки ошибка lint
         )
       )
     })
@@ -96,7 +96,7 @@ export default class GameController {
         new PositionedCharacter(
           item,
           index = randomPositionComputer(), // выдаёт ошибку что неиспользуется поэтому добавил console.log(index), и без неё нехочет.
-          console.log(index)
+          console.log(index) // без этой строки ошибка lint
         )
       )
     })
@@ -130,7 +130,9 @@ export default class GameController {
     if (this.gameState.level > 3) {
       console.log('перешли на 5 уровень, такого НЕТ');
       this.gameState.level++; // Повышаем уровень игры
-      console.log(this.gameState);
+      // console.log(this.gameState);
+      // Нужно заблокировать поле например добавить - document.getElementsByClassName('board')
+      // console.log(document.getElementById("board"));
 
     } else if (this.gameState.level === 3) {
       console.log('перешли на 4 уровень, это последний');
@@ -218,12 +220,12 @@ export default class GameController {
       // Теперь компьютер ---------------------------------------------------------------------------
       const positionedCharacterComputer = [];
 
-      team3.charactersComputer.forEach((item, index) => {
+      team4.charactersComputer.forEach((item, index) => {
         positionedCharacterComputer.push(
           new PositionedCharacter(
             item,
             index = randomPositionComputer(), // выдаёт ошибку что неиспользуется поэтому добавил console.log(index), и без неё нехочет.
-            console.log(index)
+            console.log(index) // без неё ошибка lint
           )
         )
       });
