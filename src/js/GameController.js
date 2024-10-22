@@ -48,12 +48,29 @@ export default class GameController {
   
   saveGame() {
     this.gameState.saveGameData(this);
-    console.log('saveGame()');
-    console.log(this);
+    console.log('saveGame() - сохранение игры');
+      // console.log(this);
+    let saveRetroGame = this.gameState.saveGame;
+      // console.log(saveRetroGame);
+    localStorage.saveRetroGame = JSON.stringify(saveRetroGame);
   }
   
   loadGame() {
-    console.log('loadGame()');
+    console.log('loadGame() - загрузка сохранённой игры');
+    
+    if (this.stateService.storage.length === 0) {
+      GamePlay.showError("Нет сохранений");
+      return;
+    }
+    console.log(this.stateService);
+
+    let loadRetroGame = JSON.parse(localStorage.saveRetroGame);
+
+    this.gameState.positionedCharacters = loadRetroGame.characters; //  загрузил всех персонажей(войнов)
+
+    this.gameState.cellWithActiveCharacter = loadRetroGame.position; // и их позиции
+
+    this.gamePlay.redrawPositions(this.gameState.positionedCharacters); // раставили всех участников(войнов) на поле
   }
 
   
@@ -404,11 +421,11 @@ export default class GameController {
       
         
         teamPlayer = this.gameState.positionedCharacters.filter(item => ['bowman', 'swordsman', 'magician'].includes(item.character.type));
-        console.log(teamPlayer.length); // -------------------------------- !!!
+        // console.log(teamPlayer.length); // -------------------------------- !!!
 
       
         if (teamPlayer.length == 2) {
-        console.log('одного добавили и свёравно осталось два война, добовляем ещё');
+        console.log('одного добавили и всёравно осталось два война, добовляем ещё');
         // console.log(teamPlayer);        // console.log('team2');        // console.log(team2);
         let elem;
           for (let i = 0; i < team2.charactersPlayers.length; i++) { // берём первого попавшегося
@@ -440,7 +457,7 @@ export default class GameController {
           new PositionedCharacter(
             item,
             index = randomPositionComputer(), // выдаёт ошибку что неиспользуется поэтому добавил console.log(index), и без неё нехочет.
-            console.log(index)
+            console.log(index) // без этой строки ошибка lint
           )
         )
       });

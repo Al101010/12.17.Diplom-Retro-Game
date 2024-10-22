@@ -13,10 +13,12 @@ export default class GameState {
   }
 
   saveGameData(data) {
-    console.log(data);
+    // console.log(this);
+    // console.log(data);
     this.saveGame = {      
       characters: data.gameState.positionedCharacters,
       level: data.gameState.level,
+      cellWithActiveCharacter: data.gameState.cellWithActiveCharacter,
     };
   }
 }

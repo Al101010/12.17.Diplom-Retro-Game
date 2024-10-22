@@ -16,7 +16,8 @@ gameCtrl.init();
 
 // don't write your code here
 
-console.log(gameCtrl.gameState);
+console.log(gameCtrl);
+// console.log(gameCtrl.init());
 // console.log(gamePlay.setCursor);
 
 // console.log(this);// пусто
