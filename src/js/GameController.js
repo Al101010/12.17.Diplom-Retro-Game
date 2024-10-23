@@ -59,7 +59,8 @@ export default class GameController {
     console.log('loadGame() - загрузка сохранённой игры');
     
     if (this.stateService.storage.length === 0) {
-      GamePlay.showError("Нет сохранений");
+      alert('нет сохранений(alert!)'); // работет
+      // GamePlay.showError("Нет сохранений"); // работает
       return;
     }
     console.log(this.stateService);

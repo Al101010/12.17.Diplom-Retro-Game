@@ -51,9 +51,9 @@ console.log(gameCtrl);
 // console.log(cells[0][0]);
 
 // ---
-// console.log(gamePlay.cells.length);
-// console.log(gamePlay.cells[0]);
-// for (let i = 0; i < gamePlay.cells.length; i++) {
-//     console.log(gamePlay.cells[i]);
-//     gamePlay.cells[i].removeEventListener('click', event => this.onCellClick(event));
-// } // работает
+console.log(gamePlay.cells.length);
+console.log(gamePlay.cells[0]);
+for (let i = 0; i < gamePlay.cells.length; i++) {
+    // console.log(gamePlay.cells[i]); // работает
+    gamePlay.cells[i].removeEventListener('click', event => this.onCellClick(event)); // не работает
+}

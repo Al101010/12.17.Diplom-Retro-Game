@@ -1,5 +1,7 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/81wpgd4i5wkofs0u?svg=true)](https://ci.appveyor.com/project/Al101010/12-17-diplom-retro-game)
 
+https://al101010.github.io/12.17.Diplom-Retro-Game/
+
 # Дипломное задание к курсу «Продвинутый JavaScript». Retro Game
 
 ###### tags: `netology` `advanced js`
@@ -603,3 +605,11 @@ git clone https://github.com/Al101010/12.17.Diplom-Retro-Game.git
     в GameState.js есть функция saveGameData(), а в GameController.js есть функция saveGame().
     в поисковой строке: js как сохранить игру localStorage JSON.parse
 ---------------------------------------------------------------------------------------------
+npm install
+
+npm run build
+=> потом переименовываю папку dist в docs
+
+git push
+и проверяем:
+https://al101010.github.io/12.17.Diplom-Retro-Game/
