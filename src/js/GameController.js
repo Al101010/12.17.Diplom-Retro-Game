@@ -146,8 +146,10 @@ export default class GameController {
       }
 
     if (this.gameState.level > 3) {
-      console.log('перешли на 5 уровень, такого НЕТ');
       this.gameState.level++; // Повышаем уровень игры
+      console.log('перешли на 5 уровень, такого НЕТ');
+      GamePlay.showError('Ты победил!!!');
+      
       // console.log(this.gameState);
       // Нужно заблокировать поле например добавить - document.getElementsByClassName('board')
       // console.log(document.getElementById("board"));
@@ -559,36 +561,36 @@ export default class GameController {
     });
 
     if (target) { //      console.log(target); // если есть кого атаковать
-      // const damage = Math.max(attacker.character.attack - target.character.defence, attacker.character.attack * 0.1);
+      const damage = Math.max(attacker.character.attack - target.character.defence, attacker.character.attack * 0.1);
 
-      // (async () => { // ответка, временно закрыл(потом когда нйду что выдаёт ошибку ответку верну)
-      //   await this.gamePlay.showDamage(target.position, damage);
-      //   target.character.health = target.character.health - damage;
+      (async () => { // ответка, временно закрыл(потом когда нйду что выдаёт ошибку ответку верну)
+        await this.gamePlay.showDamage(target.position, damage);
+        target.character.health = target.character.health - damage;
 
-      //   if (target.character.health <= 0) { // если жизни не осталось 
-      //     const indexCellLifeOver = this.gameState.positionedCharacters.findIndex(positionedCharacter => positionedCharacter.position == target.position);
-      //     this.gameState.positionedCharacters.splice(indexCellLifeOver, 1); // мертвых убираем с поля
-      //     this.gamePlay.deselectCell(target.position); // снимаем выделение с ячейки где был активный(от куда ушёл)
+        if (target.character.health <= 0) { // если жизни не осталось 
+          const indexCellLifeOver = this.gameState.positionedCharacters.findIndex(positionedCharacter => positionedCharacter.position == target.position);
+          this.gameState.positionedCharacters.splice(indexCellLifeOver, 1); // мертвых убираем с поля
+          this.gamePlay.deselectCell(target.position); // снимаем выделение с ячейки где был активный(от куда ушёл)
 
-      //     if (target.position == this.gameState.cellWithActiveCharacter) {             // console.log('равенство сработало'); // не стало активного, нужно выборать нового
-      //       teamPlayer = this.gameState.positionedCharacters.filter(item => ['bowman', 'swordsman', 'magician'].includes(item.character.type));
-      //       if (teamPlayer.length == 0) {
-      //         console.log('в команде игрока больше нет ни кого teamPlayer.length == 0');
-      //         return this.thePlayerLost();
-      //       };
+          if (target.position == this.gameState.cellWithActiveCharacter) {             // console.log('равенство сработало'); // не стало активного, нужно выборать нового
+            teamPlayer = this.gameState.positionedCharacters.filter(item => ['bowman', 'swordsman', 'magician'].includes(item.character.type));
+            if (teamPlayer.length == 0) {
+              console.log('в команде игрока больше нет ни кого teamPlayer.length == 0');
+              return this.thePlayerLost();
+            }
 
-      //       let randomIndex = () => Math.floor(Math.random() * (teamPlayer.length)); // генерируем случайный индекс в допустимом диапазоне
-      //       let randomPlayer = teamPlayer[randomIndex()].position; // случайный персонаж игрока             // console.log(teamPlayer);
-      //       this.gamePlay.selectCell(randomPlayer, "yellow"); // выделяем игрока - круг желтого цвета.
-      //       this.gameState.cellWithActiveCharacter = randomPlayer; // ячейка с активным персонажем
-      //     }
+            let randomIndex = () => Math.floor(Math.random() * (teamPlayer.length)); // генерируем случайный индекс в допустимом диапазоне
+            let randomPlayer = teamPlayer[randomIndex()].position; // случайный персонаж игрока             // console.log(teamPlayer);
+            this.gamePlay.selectCell(randomPlayer, "yellow"); // выделяем игрока - круг желтого цвета.
+            this.gameState.cellWithActiveCharacter = randomPlayer; // ячейка с активным персонажем
+          }
 
-      //     setTimeout(() => {
-      //       this.completingTheComputerAttack();
-      //     }, 200)
-      //   }
-      //   this.gamePlay.redrawPositions(this.gameState.positionedCharacters); // console.log(attacker); // атакующий (или attacker)         // motionPlayer();
-      // })();
+          setTimeout(() => {
+            this.completingTheComputerAttack();
+          }, 200)
+        }
+        this.gamePlay.redrawPositions(this.gameState.positionedCharacters); // console.log(attacker); // атакующий (или attacker)         // motionPlayer();
+      })();
     } else { // Если атакавать некого - не удалять
       // console.log('Если атаковать некого - не удалять');
       let cellsBusy = this.gameState.positionedCharacters.map(function(item) {
